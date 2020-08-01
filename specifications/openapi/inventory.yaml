@@ -1,15 +1,15 @@
 openapi: 3.0.3
 info:
-  title: Retail Store - Inventory v1 REST API
+  title: Online Shop - Inventory v1 REST API
   version: '0.0.0'
-  description: Retail Store - Inventory v1 REST API.
+  description: Online Shop - Inventory v1 REST API.
   contact:
     name: Bhuwan Prasad Upadhyay
     email: bot.bhuwan@gmail.com
     url: 'https://github.com/lead-by-examples/'
   license:
     name: Apache 2.0
-    url: 'https://github.com/lead-by-examples/retail-store/blob/master/LICENSE'
+    url: 'https://github.com/lead-by-examples/online-shop/blob/master/LICENSE'
 servers:
   - url: 'https://api.retailstore.com/inv'
 paths:
