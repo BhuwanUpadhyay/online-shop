@@ -14,13 +14,14 @@
         <module>user</module>
         <module>product</module>
         <module>cart</module>
-        <module>core</module>
         <module>shipping</module>
         <module>delivery</module>
         <module>history</module>
         <module>security</module>
         <module>gateway</module>
         <module>config</module>
+        <module>order</module>
+        <module>inventory</module>
     </modules>
 
     <properties>
