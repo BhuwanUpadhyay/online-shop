@@ -1,0 +1,68 @@
+openapi: 3.0.3
+info:
+  title: Online Shop - Shopping Cart v1 REST API
+  version: '0.0.0'
+  description: Online Shop - Shopping Cart v1 REST API.
+  contact:
+    name: Bhuwan Prasad Upadhyay
+    email: bot.bhuwan@gmail.com
+    url: 'https://github.com/lead-by-examples/'
+  license:
+    name: Apache 2.0
+    url: 'https://github.com/lead-by-examples/online-shop/blob/master/LICENSE'
+servers:
+  - url: 'https://api.onlineshop.com'
+paths:
+  /carts:
+    post:
+      summary: Create new shopping cart.
+      description: >
+        This endpoint allow to create new shopping cart.
+      tags:
+        - cart-command
+      operationId: create-cart
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cart'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+components:
+  schemas:
+    LineItem:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        price:
+          type: double
+        quantity:
+          type: integer
+        inventoryId:
+          type: string
+    Cart:
+      type: object
+      properties:
+        userId:
+          type: string
+        activeSince:
+          type: long
+        coupen:
+          type: string
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+tags:
+  - name: cart-query
+    description: Shopping Cart Query API
+  - name: cart-command
+    description: Shopping Cart Command API
