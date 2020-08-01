@@ -3,18 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>microservices</artifactId>
+        <artifactId>cart</artifactId>
         <groupId>io.github.bhuwanupadhyay</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>cart</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>cart-domain</module>
-        <module>cart-server-axon</module>
-    </modules>
+    <artifactId>cart-server-axon</artifactId>
 
 
 </project>
