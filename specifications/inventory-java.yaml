@@ -1,0 +1,7 @@
+'!include': 'shared/java.yaml'
+inputSpec: 'openapi/inventory.yaml'
+outputDir: 'dist/inventory/java-client'
+artifactId: 'inventory-rest-api-java-client'
+apiPackage: 'io.github.bhuwanupadhyay.inventory.client.rest'
+modelPackage: 'io.github.bhuwanupadhyay.inventory.client.rest.dto'
+invokerPackage: 'io.github.bhuwanupadhyay.inventory.client.rest.invoker'

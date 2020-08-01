@@ -1,0 +1,4 @@
+'!include': 'shared/typescript.yaml'
+inputSpec: 'openapi/inventory.yaml'
+outputDir: 'dist/inventory/typescript-client'
+npmName: '@rtms/inventory-rest-api-typescript-client'

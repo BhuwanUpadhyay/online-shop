@@ -1,0 +1,7 @@
+'!include': 'shared/spring-boot.yaml'
+inputSpec: 'openapi/inventory.yaml'
+outputDir: 'dist/inventory/spring-boot'
+artifactId: 'inventory-spring-boot-api'
+apiPackage: 'io.github.bhuwanupadhyay.inventory.interfaces.rest'
+modelPackage: 'io.github.bhuwanupadhyay.inventory.interfaces.rest.dto'
+invokerPackage: 'io.github.bhuwanupadhyay.inventory.interfaces.rest.invoker'

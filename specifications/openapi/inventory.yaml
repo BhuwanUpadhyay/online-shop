@@ -1,0 +1,97 @@
+openapi: 3.0.3
+info:
+  title: Retail Store - Inventory v1 REST API
+  version: '0.0.0'
+  description: Retail Store - Inventory v1 REST API.
+  contact:
+    name: Bhuwan Prasad Upadhyay
+    email: bot.bhuwan@gmail.com
+    url: 'https://github.com/lead-by-examples/'
+  license:
+    name: Apache 2.0
+    url: 'https://github.com/lead-by-examples/retail-store/blob/master/LICENSE'
+servers:
+  - url: 'https://api.retailstore.com/inv'
+paths:
+  /inventories:
+    get:
+      summary: List inventories.
+      description: >
+        This endpoint allow to list inventory.
+      tags:
+        - inventory-query
+      operationId: list
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryPageList'
+    post:
+      summary: Create inventory rest api.
+      description: >
+        This endpoint allow to create new inventory.
+      tags:
+        - inventory-command
+      operationId: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateInventoryResource'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RefNoResource'
+components:
+  schemas:
+    PageResource:
+      type: object
+      properties:
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        pageSize:
+          type: integer
+          format: int32
+        pageNumber:
+          type: integer
+          format: int32
+    CreateInventoryResource:
+      type: object
+      properties:
+        name:
+          type: string
+    RefNoResource:
+      type: object
+      properties:
+        reference:
+          type: string
+    InventoryResource:
+      type: object
+      properties:
+        name:
+          type: string
+        status:
+          type: string
+    InventoryPageList:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/InventoryResource'
+        page:
+          "$ref": "#/components/schemas/PageResource"
+tags:
+  - name: inventory-query
+    description: Inventory Query API
+  - name: inventory-command
+    description: Inventory Command API
