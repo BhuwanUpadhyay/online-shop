@@ -33,6 +33,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Cart'
+  /carts/{userId}:
+    get:
+      summary: Get user card.
+      description: This endpoint allow to get user cart detail.
+      operationId: get-user-cart
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: User Id.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
 components:
   schemas:
     LineItem:
