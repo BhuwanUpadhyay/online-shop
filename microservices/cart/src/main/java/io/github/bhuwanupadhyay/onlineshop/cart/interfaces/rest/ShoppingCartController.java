@@ -23,7 +23,7 @@ public class ShoppingCartController implements CartCommandApi, CartQueryApi {
 
     @Override
     public Mono<ResponseEntity<Cart>> createCart(Mono<Cart> cart, ServerWebExchange exchange) {
-        return cart.map(req -> ResponseEntity.ok(transformer.toResource(service.updateCart(transformer.toEntity(req)))));
+        return cart.map(req -> ResponseEntity.ok(transformer.toResource(service.updateCart(transformer.toDomain(req)))));
     }
 
     @Override
