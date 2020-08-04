@@ -1,0 +1,4 @@
+'!include': 'shared/typescript.yaml'
+inputSpec: 'openapi/shopping-cart.yaml'
+outputDir: 'dist/shopping-cart/typescript-client'
+npmName: '@rtms/shopping-cart-rest-api-typescript-client'

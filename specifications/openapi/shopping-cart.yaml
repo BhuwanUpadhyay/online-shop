@@ -15,7 +15,7 @@ servers:
 paths:
   /carts:
     post:
-      summary: Create new shopping cart.
+      summary: Create new shopping cart
       description: >
         This endpoint allow to create new shopping cart.
       tags:
@@ -35,14 +35,18 @@ paths:
                 $ref: '#/components/schemas/Cart'
   /carts/{userId}:
     get:
-      summary: Get user card.
+      summary: Get user card
       description: This endpoint allow to get user cart detail.
+      tags:
+        - cart-query
       operationId: get-user-cart
       parameters:
         - name: userId
           in: path
           required: true
-          description: User Id.
+          description: User Id
+          schema:
+            type: string
       responses:
         '200':
           description: OK
