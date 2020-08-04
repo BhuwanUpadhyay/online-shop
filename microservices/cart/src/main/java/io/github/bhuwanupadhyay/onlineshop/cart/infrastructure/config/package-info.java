@@ -1,1 +1,1 @@
-package io.github.bhuwanupadhyay.payment.infrastructure.config;
+package io.github.bhuwanupadhyay.onlineshop.cart.infrastructure.config;

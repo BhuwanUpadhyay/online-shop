@@ -1,5 +1,7 @@
-package io.github.bhuwanupadhyay.onlineshop.cart;
+package io.github.bhuwanupadhyay.onlineshop.cart.interfaces.rest.transform;
 
+import io.github.bhuwanupadhyay.onlineshop.cart.domain.model.valueobjects.ShoppingCart;
+import io.github.bhuwanupadhyay.onlineshop.cart.interfaces.Transformer;
 import io.github.bhuwanupadhyay.shoppingcart.interfaces.rest.dto.Cart;
 import org.springframework.stereotype.Component;
 

@@ -1,4 +1,4 @@
-package io.github.bhuwanupadhyay.onlineshop.cart;
+package io.github.bhuwanupadhyay.onlineshop.cart.domain.model.valueobjects;
 
 import java.time.LocalDateTime;
 import java.util.List;

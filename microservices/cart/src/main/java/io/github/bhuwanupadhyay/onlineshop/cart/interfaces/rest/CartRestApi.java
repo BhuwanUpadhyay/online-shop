@@ -1,7 +1,7 @@
 package io.github.bhuwanupadhyay.onlineshop.cart.interfaces.rest;
 
-import io.github.bhuwanupadhyay.onlineshop.cart.CartService;
-import io.github.bhuwanupadhyay.onlineshop.cart.CartTransformer;
+import io.github.bhuwanupadhyay.onlineshop.cart.domain.commands.CartService;
+import io.github.bhuwanupadhyay.onlineshop.cart.interfaces.rest.transform.CartTransformer;
 import io.github.bhuwanupadhyay.shoppingcart.interfaces.rest.CartCommandApi;
 import io.github.bhuwanupadhyay.shoppingcart.interfaces.rest.CartQueryApi;
 import io.github.bhuwanupadhyay.shoppingcart.interfaces.rest.dto.Cart;

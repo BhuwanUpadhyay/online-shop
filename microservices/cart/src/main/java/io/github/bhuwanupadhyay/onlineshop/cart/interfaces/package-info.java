@@ -1,1 +1,1 @@
-package io.github.bhuwanupadhyay.payment.interfaces;
+package io.github.bhuwanupadhyay.onlineshop.cart.interfaces;

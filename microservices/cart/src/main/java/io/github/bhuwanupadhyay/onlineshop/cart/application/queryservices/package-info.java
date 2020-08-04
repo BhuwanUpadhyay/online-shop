@@ -1,1 +1,1 @@
-package io.github.bhuwanupadhyay.onlineshop.cart.application.internal.queryservices;
+package io.github.bhuwanupadhyay.onlineshop.cart.application.queryservices;

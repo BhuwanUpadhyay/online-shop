@@ -1,1 +1,1 @@
-package io.github.bhuwanupadhyay.onlineshop.cart.interfaces;
+package io.github.bhuwanupadhyay.onlineshop.cart.domain;

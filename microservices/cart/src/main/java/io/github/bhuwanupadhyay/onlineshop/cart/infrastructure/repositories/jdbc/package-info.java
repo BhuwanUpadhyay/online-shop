@@ -1,1 +1,1 @@
-package io.github.bhuwanupadhyay.payment.infrastructure.repositories.jdbc;
+package io.github.bhuwanupadhyay.onlineshop.cart.infrastructure.repositories.jdbc;

@@ -1,1 +1,1 @@
-package io.github.bhuwanupadhyay.onlineshop.cart.application.internal.commandservices;
+package io.github.bhuwanupadhyay.onlineshop.cart.application.commandservices;

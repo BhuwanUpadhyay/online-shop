@@ -1,1 +1,1 @@
-package io.github.bhuwanupadhyay.onlineshop.cart.application.internal.outboundservices;
+package io.github.bhuwanupadhyay.onlineshop.cart.application.outboundservices;

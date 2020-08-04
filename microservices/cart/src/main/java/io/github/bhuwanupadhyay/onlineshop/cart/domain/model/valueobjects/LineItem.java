@@ -1,6 +1,6 @@
-package io.github.bhuwanupadhyay.onlineshop.cart;
+package io.github.bhuwanupadhyay.onlineshop.cart.domain.model.valueobjects;
 
-record LineItem(
+public record LineItem(
         String id,
         String name,
         Double price,

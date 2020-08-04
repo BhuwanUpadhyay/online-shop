@@ -1,1 +1,1 @@
-package io.github.bhuwanupadhyay.payment.domain.model.valueobjects;
+package io.github.bhuwanupadhyay.onlineshop.cart.domain.model.valueobjects;

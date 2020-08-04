@@ -1,5 +1,6 @@
-package io.github.bhuwanupadhyay.onlineshop.cart;
+package io.github.bhuwanupadhyay.onlineshop.cart.domain.commands;
 
+import io.github.bhuwanupadhyay.onlineshop.cart.domain.model.valueobjects.ShoppingCart;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
