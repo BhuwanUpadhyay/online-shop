@@ -1,4 +1,4 @@
-package io.github.bhuwanupadhyay.onlineshop.cart.interfaces.rest.transform;
+package io.github.bhuwanupadhyay.onlineshop.cart.interfaces.rest.transforms;
 
 import io.github.bhuwanupadhyay.onlineshop.cart.domain.model.valueobjects.ShoppingCart;
 import io.github.bhuwanupadhyay.onlineshop.cart.interfaces.Transformer;

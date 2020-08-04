@@ -1,7 +1,7 @@
 package io.github.bhuwanupadhyay.onlineshop.cart.interfaces.rest;
 
 import io.github.bhuwanupadhyay.onlineshop.cart.domain.commands.CartService;
-import io.github.bhuwanupadhyay.onlineshop.cart.interfaces.rest.transform.CartTransformer;
+import io.github.bhuwanupadhyay.onlineshop.cart.interfaces.rest.transforms.CartTransformer;
 import io.github.bhuwanupadhyay.shoppingcart.interfaces.rest.CartCommandApi;
 import io.github.bhuwanupadhyay.shoppingcart.interfaces.rest.CartQueryApi;
 import io.github.bhuwanupadhyay.shoppingcart.interfaces.rest.dto.Cart;
@@ -11,12 +11,12 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 @RestController
-public class CartRestApi implements CartCommandApi, CartQueryApi {
+public class ShoppingCartController implements CartCommandApi, CartQueryApi {
 
     private final CartService service;
     private final CartTransformer transformer;
 
-    public CartRestApi(CartService service, CartTransformer transformer) {
+    public ShoppingCartController(CartService service, CartTransformer transformer) {
         this.service = service;
         this.transformer = transformer;
     }
