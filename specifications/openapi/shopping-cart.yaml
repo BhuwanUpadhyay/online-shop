@@ -76,7 +76,7 @@ components:
           type: string
         activeSince:
           type: long
-        coupen:
+        coupon:
           type: string
         lineItems:
           type: array
