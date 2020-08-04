@@ -1,6 +1,6 @@
 package io.github.bhuwanupadhyay.onlineshop.cart.interfaces.rest;
 
-import io.github.bhuwanupadhyay.onlineshop.cart.domain.commands.CartService;
+import io.github.bhuwanupadhyay.onlineshop.cart.application.commandservices.CartCommandService;
 import io.github.bhuwanupadhyay.onlineshop.cart.interfaces.rest.transforms.CartTransformer;
 import io.github.bhuwanupadhyay.shoppingcart.interfaces.rest.CartCommandApi;
 import io.github.bhuwanupadhyay.shoppingcart.interfaces.rest.CartQueryApi;
@@ -13,10 +13,10 @@ import reactor.core.publisher.Mono;
 @RestController
 public class ShoppingCartController implements CartCommandApi, CartQueryApi {
 
-    private final CartService service;
+    private final CartCommandService service;
     private final CartTransformer transformer;
 
-    public ShoppingCartController(CartService service, CartTransformer transformer) {
+    public ShoppingCartController(CartCommandService service, CartTransformer transformer) {
         this.service = service;
         this.transformer = transformer;
     }
@@ -28,6 +28,6 @@ public class ShoppingCartController implements CartCommandApi, CartQueryApi {
 
     @Override
     public Mono<ResponseEntity<Cart>> getUserCart(String userId, ServerWebExchange exchange) {
-        return Mono.just(ResponseEntity.ok(transformer.toResource(service.findByUserId(userId))));
+        return Mono.just(ResponseEntity.ok(transformer.toResource(service.findOrUpdateByUserId(userId))));
     }
 }
