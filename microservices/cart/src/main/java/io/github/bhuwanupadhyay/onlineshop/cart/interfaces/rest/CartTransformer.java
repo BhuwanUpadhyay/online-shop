@@ -1,7 +1,7 @@
-package io.github.bhuwanupadhyay.onlineshop.cart.interfaces.rest.transforms;
+package io.github.bhuwanupadhyay.onlineshop.cart.interfaces.rest;
 
 import io.github.bhuwanupadhyay.core.Transformer;
-import io.github.bhuwanupadhyay.onlineshop.cart.domain.model.valueobjects.ShoppingCart;
+import io.github.bhuwanupadhyay.onlineshop.cart.domain.model.entities.ShoppingCart;
 import io.github.bhuwanupadhyay.shoppingcart.interfaces.rest.dto.Cart;
 import org.springframework.stereotype.Component;
 
@@ -25,10 +25,10 @@ public class CartTransformer implements Transformer<ShoppingCart, Cart> {
     @Override
     public Cart toResource(ShoppingCart domain) {
         return new Cart()
-                .activeSince(domain.activeSince().atZone(ZoneId.systemDefault()).toEpochSecond())
-                .userId(domain.userId())
+                .activeSince(domain.getActiveSince().atZone(ZoneId.systemDefault()).toEpochSecond())
+                .userId(domain.getUserId())
                 .lineItems(new ArrayList<>())
-                .coupen(domain.coupon());
+                .coupen(domain.getCoupon());
     }
 
 }

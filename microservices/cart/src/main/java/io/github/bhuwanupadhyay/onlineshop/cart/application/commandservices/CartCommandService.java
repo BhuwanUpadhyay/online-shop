@@ -1,6 +1,6 @@
 package io.github.bhuwanupadhyay.onlineshop.cart.application.commandservices;
 
-import io.github.bhuwanupadhyay.onlineshop.cart.domain.model.valueobjects.ShoppingCart;
+import io.github.bhuwanupadhyay.onlineshop.cart.domain.model.entities.ShoppingCart;
 
 public interface CartCommandService {
 

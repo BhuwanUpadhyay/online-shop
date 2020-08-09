@@ -1,0 +1,51 @@
+openapi: 3.0.3
+info:
+  title: Online Shop - Delivery v1 REST API
+  version: '0.0.0'
+  description: Online Shop - Delivery v1 REST API.
+  contact:
+    name: Bhuwan Prasad Upadhyay
+    email: bot.bhuwan@gmail.com
+    url: 'https://github.com/lead-by-examples/'
+  license:
+    name: Apache 2.0
+    url: 'https://github.com/lead-by-examples/online-shop/blob/master/LICENSE'
+servers:
+  - url: 'https://api.onlineshop.com'
+paths:
+  /delivery:
+    post:
+      summary: Deliver Order
+      description: >
+        This endpoint allow to deliver order.
+      tags:
+        - delivery-command
+      operationId: deliver-order
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cart'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Delivery'
+components:
+  schemas:
+    Delivery:
+      type: object
+      properties:
+        orderId:
+          type: string
+        delivered:
+          type: boolean
+        reasonForFailure:
+          type: string
+tags:
+  - name: delivery-query
+    description: Delivery Query API
+  - name: delivery-command
+    description: Delivery Command API

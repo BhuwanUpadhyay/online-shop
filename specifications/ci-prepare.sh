@@ -20,6 +20,7 @@ echo "New semantic version: $NEW_VERSION"
 
 for module in \
   "shopping-cart" \
+  "delivery" \
   ; do
     echo "PACKAGING MODULE: ${module}"
     for feature in \
