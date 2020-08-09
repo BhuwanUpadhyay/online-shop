@@ -1,19 +1,22 @@
 package io.github.bhuwanupadhyay.onlineshop.cart.infrastructure.repositories.cache;
 
-import io.github.bhuwanupadhyay.ddd.DomainRepository;
 import io.github.bhuwanupadhyay.onlineshop.cart.domain.model.aggregates.Cart;
+import io.github.bhuwanupadhyay.onlineshop.cart.domain.model.repositories.CartRepository;
 import io.github.bhuwanupadhyay.onlineshop.cart.domain.model.valueobjects.UserId;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Repository
-public class CartRepository extends DomainRepository<Cart, UserId> {
+public class CachedCartRepository extends CartRepository {
 
     private final List<Cart> carts = new ArrayList<>();
 
-    protected CartRepository() {
+    public CachedCartRepository() {
         super(domainEvent -> {
         });
     }

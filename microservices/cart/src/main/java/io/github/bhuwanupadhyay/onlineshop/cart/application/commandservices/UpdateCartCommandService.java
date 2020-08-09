@@ -3,8 +3,8 @@ package io.github.bhuwanupadhyay.onlineshop.cart.application.commandservices;
 import io.github.bhuwanupadhyay.command.CommandService;
 import io.github.bhuwanupadhyay.core.Result;
 import io.github.bhuwanupadhyay.onlineshop.cart.domain.model.aggregates.Cart;
+import io.github.bhuwanupadhyay.onlineshop.cart.domain.model.repositories.CartRepository;
 import io.github.bhuwanupadhyay.onlineshop.cart.domain.model.valueobjects.UserId;
-import io.github.bhuwanupadhyay.onlineshop.cart.infrastructure.repositories.cache.CartRepository;
 import org.springframework.stereotype.Service;
 
 @Service

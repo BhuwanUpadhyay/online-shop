@@ -44,7 +44,7 @@ class CodeArchTest {
             .domainModels("..domain.model..")
             .domainServices("..domain.services..")
             .applicationServices("..application..")
-//            .adapter("outbound", "..infrastructure..")
+            .adapter("outbound", "..infrastructure..")
             .adapter("inbound", "..interfaces..");
 
 

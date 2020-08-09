@@ -2,8 +2,8 @@ package io.github.bhuwanupadhyay.onlineshop.cart.interfaces.rest;
 
 import io.github.bhuwanupadhyay.core.Result;
 import io.github.bhuwanupadhyay.onlineshop.cart.application.commandservices.UpdateCartCommandService;
+import io.github.bhuwanupadhyay.onlineshop.cart.domain.model.repositories.CartRepository;
 import io.github.bhuwanupadhyay.onlineshop.cart.domain.model.valueobjects.UserId;
-import io.github.bhuwanupadhyay.onlineshop.cart.infrastructure.repositories.cache.CartRepository;
 import io.github.bhuwanupadhyay.shoppingcart.interfaces.rest.CartCommandApi;
 import io.github.bhuwanupadhyay.shoppingcart.interfaces.rest.CartQueryApi;
 import io.github.bhuwanupadhyay.shoppingcart.interfaces.rest.dto.Cart;
