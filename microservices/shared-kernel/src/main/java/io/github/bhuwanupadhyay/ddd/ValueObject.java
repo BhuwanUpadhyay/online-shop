@@ -1,9 +1,9 @@
 package io.github.bhuwanupadhyay.ddd;
 
-public abstract class ValueObject {
-  @Override
-  public abstract int hashCode();
+public interface ValueObject {
+    @Override
+    int hashCode();
 
-  @Override
-  public abstract boolean equals(Object o);
+    @Override
+    boolean equals(Object o);
 }

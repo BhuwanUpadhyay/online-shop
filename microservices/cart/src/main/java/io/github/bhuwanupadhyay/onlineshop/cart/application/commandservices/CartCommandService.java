@@ -1,10 +1,10 @@
 package io.github.bhuwanupadhyay.onlineshop.cart.application.commandservices;
 
-import io.github.bhuwanupadhyay.onlineshop.cart.domain.model.entities.ShoppingCart;
+import io.github.bhuwanupadhyay.onlineshop.cart.domain.model.aggregates.Cart;
 
 public interface CartCommandService {
 
-    ShoppingCart updateCart(ShoppingCart cart);
+    Cart updateCart(Cart cart);
 
-    ShoppingCart findOrUpdateByUserId(String userId);
+    Cart findOrUpdateByUserId(String userId);
 }

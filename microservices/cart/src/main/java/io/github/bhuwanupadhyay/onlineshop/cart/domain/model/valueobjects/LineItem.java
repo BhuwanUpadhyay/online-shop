@@ -5,7 +5,7 @@ public record LineItem(
         String name,
         Double price,
         Integer quantity,
-        Long inventoryId
+        String inventoryId
 ) {
 
 }
