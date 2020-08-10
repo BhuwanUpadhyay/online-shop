@@ -5,14 +5,32 @@ import com.tngtech.archunit.junit.AnalyzeClasses;
 import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchRule;
 import com.tngtech.archunit.lang.CompositeArchRule;
+import com.tngtech.archunit.lang.syntax.ArchRuleDefinition;
+import com.tngtech.archunit.library.Architectures;
 import org.slf4j.Logger;
 
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.fields;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;
 import static com.tngtech.archunit.library.GeneralCodingRules.*;
 
-@AnalyzeClasses(packages = CodeArchTest.PACKAGE)
+@AnalyzeClasses(packages = CodingRuleTest.PACKAGE)
 class CodingRuleTest {
+
+    public static final String PACKAGE = "io.github.bhuwanupadhyay.onlineshop.cart";
+
+    @ArchTest
+    private final ArchRule classes_are_under_packages = ArchRuleDefinition.classes()
+            .should()
+            .resideInAnyPackage(PACKAGE, "..application..", "..domain..", "..infrastructure..", "..interfaces..");
+
+    @ArchTest
+    private final ArchRule onion_dependencies_are_respected = Architectures
+            .onionArchitecture()
+            .domainModels("..domain.model..")
+            .domainServices("..domain.services..")
+            .applicationServices("..application..")
+            .adapter("outbound", "..infrastructure..")
+            .adapter("inbound", "..interfaces..");
 
     @ArchTest
     private final ArchRule no_access_to_standard_streams = NO_CLASSES_SHOULD_ACCESS_STANDARD_STREAMS;
