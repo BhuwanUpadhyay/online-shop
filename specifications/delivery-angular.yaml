@@ -1,0 +1,4 @@
+'!include': 'shared/typescript.yaml'
+inputSpec: 'openapi/delivery.yaml'
+outputDir: 'dist/delivery/typescript-client'
+npmName: '@rtms/delivery-rest-api-typescript-client'

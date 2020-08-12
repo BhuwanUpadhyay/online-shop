@@ -1,0 +1,7 @@
+'!include': 'shared/java.yaml'
+inputSpec: 'openapi/delivery.yaml'
+outputDir: 'dist/delivery/java-client'
+artifactId: 'delivery-rest-api-java-client'
+apiPackage: 'io.github.bhuwanupadhyay.delivery.client.rest'
+modelPackage: 'io.github.bhuwanupadhyay.delivery.client.rest.dto'
+invokerPackage: 'io.github.bhuwanupadhyay.delivery.client.rest.invoker'

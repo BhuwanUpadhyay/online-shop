@@ -25,14 +25,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Cart'
+              $ref: '#/components/schemas/CartResource'
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Cart'
+                $ref: '#/components/schemas/CartResource'
   /carts/{userId}:
     get:
       summary: Get user card
@@ -53,10 +53,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Cart'
+                $ref: '#/components/schemas/CartResource'
 components:
   schemas:
-    LineItem:
+    LineItemResource:
       type: object
       properties:
         id:
@@ -69,7 +69,7 @@ components:
           type: integer
         inventoryId:
           type: string
-    Cart:
+    CartResource:
       type: object
       properties:
         userId:
@@ -81,7 +81,7 @@ components:
         lineItems:
           type: array
           items:
-            $ref: '#/components/schemas/LineItem'
+            $ref: '#/components/schemas/LineItemResource'
 tags:
   - name: cart-query
     description: Shopping Cart Query API

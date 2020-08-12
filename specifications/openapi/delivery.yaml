@@ -25,17 +25,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Cart'
+              $ref: '#/components/schemas/DeliveryResource'
       responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Delivery'
+        '204':
+          description: OK - No Content
 components:
   schemas:
-    Delivery:
+    DeliveryResource:
       type: object
       properties:
         orderId:

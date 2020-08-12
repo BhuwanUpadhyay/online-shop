@@ -1,0 +1,7 @@
+'!include': 'shared/spring-boot.yaml'
+inputSpec: 'openapi/delivery.yaml'
+outputDir: 'dist/delivery/spring-boot'
+artifactId: 'delivery-spring-boot-api'
+apiPackage: 'io.github.bhuwanupadhyay.delivery.interfaces.rest'
+modelPackage: 'io.github.bhuwanupadhyay.delivery.interfaces.rest.dto'
+invokerPackage: 'io.github.bhuwanupadhyay.delivery.interfaces.rest.invoker'
