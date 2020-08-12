@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>io.github.bhuwanupadhyay</groupId>
-            <artifactId>shopping-cart-spring-boot-api</artifactId>
+            <artifactId>cart-spring-boot-api</artifactId>
             <version>${specification.version}</version>
         </dependency>
         <dependency>

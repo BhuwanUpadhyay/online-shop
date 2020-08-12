@@ -1,10 +1,11 @@
 package io.github.bhuwanupadhyay.onlineshop.cart.interfaces.rest;
 
+import io.github.bhuwanupadhyay.onlineshop.cart.interfaces.rest.dto.LineItemResource;
 import io.github.bhuwanupadhyay.core.Transformer;
 import io.github.bhuwanupadhyay.onlineshop.cart.domain.model.aggregates.Cart;
 import io.github.bhuwanupadhyay.onlineshop.cart.domain.model.valueobjects.LineItem;
 import io.github.bhuwanupadhyay.onlineshop.cart.domain.model.valueobjects.UserId;
-import io.github.bhuwanupadhyay.shoppingcart.interfaces.rest.dto.CartResource;
+import io.github.bhuwanupadhyay.onlineshop.cart.interfaces.rest.dto.CartResource;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
@@ -40,7 +41,7 @@ public class CartTransformer implements Transformer<Cart, CartResource> {
                 .lineItems(
                         domain.getLineItems()
                                 .stream()
-                                .map(item -> new io.github.bhuwanupadhyay.shoppingcart.interfaces.rest.dto.LineItemResource().
+                                .map(item -> new LineItemResource().
                                         id(item.id())
                                         .name(item.name())
                                         .price(item.price())
