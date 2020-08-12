@@ -21,12 +21,16 @@ echo "New semantic version: $NEW_VERSION"
 for module in \
   "shopping-cart" \
   "delivery" \
+  "inventory" \
+  "history" \
+  "order" \
+  "product" \
+  "shipping" \
+  "user" \
   ; do
     echo "PACKAGING MODULE: ${module}"
     for feature in \
         "spring-boot" \
-        "java-client" \
-        "typescript-client" \
         ; do
 
         echo "PACKAGING FEATURE: ${feature}"
@@ -38,7 +42,7 @@ for module in \
             mvn_install
             ;;
           java-client)
-            mvn_install
+#            mvn_install
             ;;
           typescript-client)
 #            npm_link

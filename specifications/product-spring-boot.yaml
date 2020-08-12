@@ -1,0 +1,7 @@
+'!include': 'shared/spring-boot.yaml'
+inputSpec: 'openapi/product.yaml'
+outputDir: 'dist/product/spring-boot'
+artifactId: 'product-spring-boot-api'
+apiPackage: 'io.github.bhuwanupadhyay.product.interfaces.rest'
+modelPackage: 'io.github.bhuwanupadhyay.product.interfaces.rest.dto'
+invokerPackage: 'io.github.bhuwanupadhyay.product.interfaces.rest.invoker'

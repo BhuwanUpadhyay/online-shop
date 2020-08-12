@@ -1,0 +1,7 @@
+'!include': 'shared/spring-boot.yaml'
+inputSpec: 'openapi/user.yaml'
+outputDir: 'dist/user/spring-boot'
+artifactId: 'user-spring-boot-api'
+apiPackage: 'io.github.bhuwanupadhyay.user.interfaces.rest'
+modelPackage: 'io.github.bhuwanupadhyay.user.interfaces.rest.dto'
+invokerPackage: 'io.github.bhuwanupadhyay.user.interfaces.rest.invoker'

@@ -1,0 +1,7 @@
+'!include': 'shared/spring-boot.yaml'
+inputSpec: 'openapi/shipping.yaml'
+outputDir: 'dist/shipping/spring-boot'
+artifactId: 'shipping-spring-boot-api'
+apiPackage: 'io.github.bhuwanupadhyay.shipping.interfaces.rest'
+modelPackage: 'io.github.bhuwanupadhyay.shipping.interfaces.rest.dto'
+invokerPackage: 'io.github.bhuwanupadhyay.shipping.interfaces.rest.invoker'

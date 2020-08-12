@@ -1,0 +1,7 @@
+'!include': 'shared/spring-boot.yaml'
+inputSpec: 'openapi/order.yaml'
+outputDir: 'dist/order/spring-boot'
+artifactId: 'order-spring-boot-api'
+apiPackage: 'io.github.bhuwanupadhyay.order.interfaces.rest'
+modelPackage: 'io.github.bhuwanupadhyay.order.interfaces.rest.dto'
+invokerPackage: 'io.github.bhuwanupadhyay.order.interfaces.rest.invoker'

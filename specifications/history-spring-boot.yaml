@@ -1,0 +1,7 @@
+'!include': 'shared/spring-boot.yaml'
+inputSpec: 'openapi/history.yaml'
+outputDir: 'dist/history/spring-boot'
+artifactId: 'history-spring-boot-api'
+apiPackage: 'io.github.bhuwanupadhyay.history.interfaces.rest'
+modelPackage: 'io.github.bhuwanupadhyay.history.interfaces.rest.dto'
+invokerPackage: 'io.github.bhuwanupadhyay.history.interfaces.rest.invoker'
