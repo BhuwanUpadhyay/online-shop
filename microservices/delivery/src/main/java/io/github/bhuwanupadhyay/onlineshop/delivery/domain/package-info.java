@@ -7,7 +7,7 @@
  * - Value Objects
  * - Domain Rules
  */
-package io.github.bhuwanupadhyay.onlineshop.cart.domain;
+package io.github.bhuwanupadhyay.onlineshop.delivery.domain;
 /*
     Package structure for our domain model
 

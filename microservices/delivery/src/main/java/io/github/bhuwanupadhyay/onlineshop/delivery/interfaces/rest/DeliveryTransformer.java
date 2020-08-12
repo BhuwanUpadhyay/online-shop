@@ -1,9 +1,8 @@
 package io.github.bhuwanupadhyay.onlineshop.delivery.interfaces.rest;
 
 import io.github.bhuwanupadhyay.core.Transformer;
-import io.github.bhuwanupadhyay.onlineshop.cart.domain.model.aggregates.Cart;
-import io.github.bhuwanupadhyay.onlineshop.cart.domain.model.valueobjects.LineItem;
-import io.github.bhuwanupadhyay.onlineshop.cart.domain.model.valueobjects.UserId;
+import io.github.bhuwanupadhyay.delivery.interfaces.rest.dto.DeliveryResource;
+import io.github.bhuwanupadhyay.onlineshop.delivery.domain.model.aggregates.Delivery;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
@@ -11,10 +10,10 @@ import java.time.ZoneId;
 import java.util.stream.Collectors;
 
 @Component
-public class CartTransformer implements Transformer<Cart, io.github.bhuwanupadhyay.shoppingcart.interfaces.rest.dto.Cart> {
+public class DeliveryTransformer implements Transformer<Delivery, DeliveryResource> {
 
     @Override
-    public Cart toDomain(io.github.bhuwanupadhyay.shoppingcart.interfaces.rest.dto.Cart resource) {
+    public Delivery toDomain(DeliveryResource resource) {
         return new Cart(
                 new UserId(resource.getUserId()),
                 Instant.ofEpochMilli(resource.getActiveSince()).atZone(ZoneId.systemDefault()).toLocalDateTime(),
@@ -32,7 +31,7 @@ public class CartTransformer implements Transformer<Cart, io.github.bhuwanupadhy
     }
 
     @Override
-    public io.github.bhuwanupadhyay.shoppingcart.interfaces.rest.dto.Cart toResource(Cart domain) {
+    public DeliveryResource toResource(Delivery domain) {
         return new io.github.bhuwanupadhyay.shoppingcart.interfaces.rest.dto.Cart()
                 .activeSince(domain.getActiveSince().atZone(ZoneId.systemDefault()).toEpochSecond())
                 .userId(domain.getUserId())

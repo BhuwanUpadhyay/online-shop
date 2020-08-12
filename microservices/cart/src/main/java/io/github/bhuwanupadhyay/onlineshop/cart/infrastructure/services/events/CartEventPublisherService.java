@@ -1,8 +1,9 @@
-package io.github.bhuwanupadhyay.onlineshop.cart.application.outboundservices;
+package io.github.bhuwanupadhyay.onlineshop.cart.infrastructure.services.events;
 
 import io.github.bhuwanupadhyay.ddd.DomainEvent;
 import io.github.bhuwanupadhyay.ddd.DomainEventPublisher;
 import io.github.bhuwanupadhyay.onlineshop.cart.infrastructure.brokers.stream.CartEventSource;
+import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
+@EnableBinding(CartEventSource.class)
 public class CartEventPublisherService implements DomainEventPublisher {
 
     private final CartEventSource eventSource;

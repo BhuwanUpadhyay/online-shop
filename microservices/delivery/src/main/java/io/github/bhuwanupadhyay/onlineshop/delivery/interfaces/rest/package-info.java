@@ -1,1 +1,1 @@
-package io.github.bhuwanupadhyay.onlineshop.cart.interfaces.rest;
+package io.github.bhuwanupadhyay.onlineshop.delivery.interfaces.rest;

@@ -2,22 +2,22 @@ package io.github.bhuwanupadhyay.onlineshop.delivery.application.commandservices
 
 import io.github.bhuwanupadhyay.command.CommandService;
 import io.github.bhuwanupadhyay.core.Result;
-import io.github.bhuwanupadhyay.onlineshop.cart.domain.model.aggregates.Cart;
-import io.github.bhuwanupadhyay.onlineshop.cart.domain.model.repositories.CartRepository;
-import io.github.bhuwanupadhyay.onlineshop.cart.domain.model.valueobjects.UserId;
+import io.github.bhuwanupadhyay.onlineshop.delivery.domain.model.aggregates.Delivery;
+import io.github.bhuwanupadhyay.onlineshop.delivery.domain.model.repositories.DeliveryRepository;
+import io.github.bhuwanupadhyay.onlineshop.delivery.domain.model.valueobjects.OrderId;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UpdateCartCommandService implements CommandService<Cart, UserId> {
+public class DeliveryCommandService implements CommandService<Delivery, OrderId> {
 
-    private final CartRepository repository;
+    private final DeliveryRepository repository;
 
-    public UpdateCartCommandService(CartRepository repository) {
+    public DeliveryCommandService(DeliveryRepository repository) {
         this.repository = repository;
     }
 
     @Override
-    public Result<UserId> execute(Cart command) {
+    public Result<OrderId> execute(Delivery command) {
         repository.save(command);
         return new Result<>(command.getId());
     }

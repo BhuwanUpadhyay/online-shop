@@ -3,7 +3,7 @@
  * Context’s domain model to communicate to any external repositories (e.g., Relational
  * Database(s), NoSQL Databases, Message Queues, Event Infrastructure).
  */
-package io.github.bhuwanupadhyay.onlineshop.cart.infrastructure;
+package io.github.bhuwanupadhyay.onlineshop.delivery.infrastructure;
 /*
     infrastructure  > messaging > brokers   > kafka
                                             > rabbitmq

@@ -6,7 +6,7 @@ import io.github.bhuwanupadhyay.onlineshop.cart.domain.model.repositories.CartRe
 import io.github.bhuwanupadhyay.onlineshop.cart.domain.model.valueobjects.UserId;
 import io.github.bhuwanupadhyay.shoppingcart.interfaces.rest.CartCommandApi;
 import io.github.bhuwanupadhyay.shoppingcart.interfaces.rest.CartQueryApi;
-import io.github.bhuwanupadhyay.shoppingcart.interfaces.rest.dto.Cart;
+import io.github.bhuwanupadhyay.shoppingcart.interfaces.rest.dto.CartResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ServerWebExchange;
@@ -26,7 +26,7 @@ public class ShoppingCartController implements CartCommandApi, CartQueryApi {
     }
 
     @Override
-    public Mono<ResponseEntity<Cart>> createCart(Mono<Cart> cart, ServerWebExchange exchange) {
+    public Mono<ResponseEntity<CartResource>> createCart(Mono<CartResource> cart, ServerWebExchange exchange) {
         return cart.map(req -> {
             Result<UserId> result = service.execute(transformer.toDomain(req));
             return ResponseEntity.ok(transformer.toResource(repository.find(result.ok().get())));
@@ -34,7 +34,7 @@ public class ShoppingCartController implements CartCommandApi, CartQueryApi {
     }
 
     @Override
-    public Mono<ResponseEntity<Cart>> getUserCart(String userId, ServerWebExchange exchange) {
+    public Mono<ResponseEntity<CartResource>> getUserCart(String userId, ServerWebExchange exchange) {
         return Mono.just(ResponseEntity.ok(transformer.toResource(repository.find(new UserId(userId)))));
     }
 }

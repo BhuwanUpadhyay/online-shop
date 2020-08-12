@@ -5,7 +5,7 @@ import org.springframework.cloud.stream.annotation.Output;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.SubscribableChannel;
 
-public interface CartEventSource {
+public interface DeliveryEventSource {
 
     String IN_CHANNEL = "osEvents";
     String OUT_CHANNEL = "osEvents";

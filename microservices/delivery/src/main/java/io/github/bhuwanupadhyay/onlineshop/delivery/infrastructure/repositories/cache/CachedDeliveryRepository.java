@@ -1,47 +1,38 @@
 package io.github.bhuwanupadhyay.onlineshop.delivery.infrastructure.repositories.cache;
 
-import io.github.bhuwanupadhyay.onlineshop.cart.domain.model.aggregates.Cart;
-import io.github.bhuwanupadhyay.onlineshop.cart.domain.model.repositories.CartRepository;
-import io.github.bhuwanupadhyay.onlineshop.cart.domain.model.valueobjects.UserId;
+import io.github.bhuwanupadhyay.onlineshop.delivery.domain.model.aggregates.Delivery;
+import io.github.bhuwanupadhyay.onlineshop.delivery.domain.model.repositories.DeliveryRepository;
+import io.github.bhuwanupadhyay.onlineshop.delivery.domain.model.valueobjects.OrderId;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
 @Repository
-public class CachedCartRepository extends CartRepository {
+public class CachedDeliveryRepository extends DeliveryRepository {
 
-    private final List<Cart> carts = new ArrayList<>();
+    private final List<Delivery> carts = new ArrayList<>();
 
-    public CachedCartRepository() {
+    public CachedDeliveryRepository() {
         super(domainEvent -> {
         });
     }
 
     @Override
-    public Optional<Cart> findOne(UserId userId) {
-        Optional<Cart> findOne = carts.stream().filter(cart -> Objects.equals(cart.getUserId(), userId.userId()))
+    public Optional<Delivery> findOne(OrderId id) {
+        return carts.stream().filter(cart -> Objects.equals(cart.getId().userId(), id.userId()))
                 .findFirst();
-
-        Cart cart = findOne.orElseGet(() -> new Cart(userId, LocalDateTime.now(), null, new ArrayList<>()));
-
-        if (findOne.isPresent()) {
-            persist(cart);
-        }
-
-        return Optional.of(cart);
     }
 
     @Override
-    protected void persist(Cart entity) {
+    protected void persist(Delivery entity) {
         carts.add(entity);
     }
 
     @Override
-    public UserId nextId() {
+    public OrderId nextId() {
         throw new UnsupportedOperationException("No nextId available for cart!");
     }
 }

@@ -1,1 +1,1 @@
-package io.github.bhuwanupadhyay.onlineshop.cart.infrastructure.brokers;
+package io.github.bhuwanupadhyay.onlineshop.delivery.infrastructure.brokers;

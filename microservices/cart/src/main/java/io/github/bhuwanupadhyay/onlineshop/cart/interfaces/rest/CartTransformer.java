@@ -4,6 +4,7 @@ import io.github.bhuwanupadhyay.core.Transformer;
 import io.github.bhuwanupadhyay.onlineshop.cart.domain.model.aggregates.Cart;
 import io.github.bhuwanupadhyay.onlineshop.cart.domain.model.valueobjects.LineItem;
 import io.github.bhuwanupadhyay.onlineshop.cart.domain.model.valueobjects.UserId;
+import io.github.bhuwanupadhyay.shoppingcart.interfaces.rest.dto.CartResource;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
@@ -11,14 +12,14 @@ import java.time.ZoneId;
 import java.util.stream.Collectors;
 
 @Component
-public class CartTransformer implements Transformer<Cart, io.github.bhuwanupadhyay.shoppingcart.interfaces.rest.dto.Cart> {
+public class CartTransformer implements Transformer<Cart, CartResource> {
 
     @Override
-    public Cart toDomain(io.github.bhuwanupadhyay.shoppingcart.interfaces.rest.dto.Cart resource) {
+    public Cart toDomain(CartResource resource) {
         return new Cart(
                 new UserId(resource.getUserId()),
                 Instant.ofEpochMilli(resource.getActiveSince()).atZone(ZoneId.systemDefault()).toLocalDateTime(),
-                resource.getCoupen(),
+                resource.getCoupon(),
                 resource.getLineItems()
                         .stream()
                         .map(item -> new LineItem(
@@ -32,20 +33,20 @@ public class CartTransformer implements Transformer<Cart, io.github.bhuwanupadhy
     }
 
     @Override
-    public io.github.bhuwanupadhyay.shoppingcart.interfaces.rest.dto.Cart toResource(Cart domain) {
-        return new io.github.bhuwanupadhyay.shoppingcart.interfaces.rest.dto.Cart()
+    public CartResource toResource(Cart domain) {
+        return new CartResource()
                 .activeSince(domain.getActiveSince().atZone(ZoneId.systemDefault()).toEpochSecond())
                 .userId(domain.getUserId())
                 .lineItems(
                         domain.getLineItems()
                                 .stream()
-                                .map(item -> new io.github.bhuwanupadhyay.shoppingcart.interfaces.rest.dto.LineItem().
+                                .map(item -> new io.github.bhuwanupadhyay.shoppingcart.interfaces.rest.dto.LineItemResource().
                                         id(item.id())
                                         .name(item.name())
                                         .price(item.price())
                                         .quantity(item.quantity())
                                         .inventoryId(item.inventoryId())).collect(Collectors.toList())
-                ).coupen(domain.getCoupon());
+                ).coupon(domain.getCoupon());
     }
 
 }

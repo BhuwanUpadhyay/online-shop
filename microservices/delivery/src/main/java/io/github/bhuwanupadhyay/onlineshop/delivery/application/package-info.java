@@ -9,7 +9,7 @@
  * - Data transfer object transformation
  * - Callouts to other Bounded Contexts
  */
-package io.github.bhuwanupadhyay.onlineshop.cart.application;
+package io.github.bhuwanupadhyay.onlineshop.delivery.application;
 
 /*
     Package structure for Application services

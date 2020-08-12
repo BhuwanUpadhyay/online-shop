@@ -1,1 +1,1 @@
-package io.github.bhuwanupadhyay.onlineshop.cart.interfaces.events;
+package io.github.bhuwanupadhyay.onlineshop.delivery.interfaces.events;

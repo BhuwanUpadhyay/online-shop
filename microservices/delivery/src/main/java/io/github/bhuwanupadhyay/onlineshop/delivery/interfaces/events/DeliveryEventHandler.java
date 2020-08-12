@@ -1,4 +1,10 @@
 package io.github.bhuwanupadhyay.onlineshop.delivery.interfaces.events;
 
-public class OrderDeliveryHandler {
+import org.springframework.stereotype.Service;
+
+@Service
+public class DeliveryEventHandler {
+
+
+
 }

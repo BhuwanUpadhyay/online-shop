@@ -1,1 +1,1 @@
-package io.github.bhuwanupadhyay.onlineshop.cart.domain.model.events;
+package io.github.bhuwanupadhyay.onlineshop.delivery.domain.model.events;
