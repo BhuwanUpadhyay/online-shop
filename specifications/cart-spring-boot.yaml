@@ -1,0 +1,7 @@
+'!include': 'shared/spring-boot.yaml'
+inputSpec: 'openapi/cart.yaml'
+outputDir: 'dist/cart/spring-boot'
+artifactId: 'cart-spring-boot-api'
+apiPackage: 'io.github.bhuwanupadhyay.onlineshop.cart.interfaces.rest'
+modelPackage: 'io.github.bhuwanupadhyay.onlineshop.cart.interfaces.rest.dto'
+invokerPackage: 'io.github.bhuwanupadhyay.onlineshop.cart.interfaces.rest.invoker'

@@ -1,5 +1,5 @@
 generatorName: 'java'
-groupId: 'io.github.bhuwanupadhyay.rtms'
+groupId: 'io.github.bhuwanupadhyay'
 artifactVersion: '1.0.0'
 library: 'feign'
 additionalProperties:

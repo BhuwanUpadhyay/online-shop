@@ -1,7 +1,0 @@
-'!include': 'shared/spring-boot.yaml'
-inputSpec: 'openapi/cart.yaml'
-outputDir: 'dist/shopping-cart/spring-boot'
-artifactId: 'shopping-cart-spring-boot-api'
-apiPackage: 'io.github.bhuwanupadhyay.shoppingcart.interfaces.rest'
-modelPackage: 'io.github.bhuwanupadhyay.shoppingcart.interfaces.rest.dto'
-invokerPackage: 'io.github.bhuwanupadhyay.shoppingcart.interfaces.rest.invoker'

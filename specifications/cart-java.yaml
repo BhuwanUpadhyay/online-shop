@@ -1,0 +1,7 @@
+'!include': 'shared/java.yaml'
+inputSpec: 'openapi/cart.yaml'
+outputDir: 'dist/cart/java-client'
+artifactId: 'cart-rest-api-java-client'
+apiPackage: 'io.github.bhuwanupadhyay.onlineshop.cart.client.rest'
+modelPackage: 'io.github.bhuwanupadhyay.onlineshop.cart.client.rest.dto'
+invokerPackage: 'io.github.bhuwanupadhyay.onlineshop.cart.client.rest.invoker'
