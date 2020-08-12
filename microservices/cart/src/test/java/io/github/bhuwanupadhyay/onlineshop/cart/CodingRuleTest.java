@@ -28,8 +28,8 @@ class CodingRuleTest {
             .onionArchitecture()
             .domainModels("..domain.model..")
             .domainServices("..domain.services..")
-            .applicationServices("..application..")
-            .adapter("outbound", "..infrastructure..")
+            .applicationServices("..application.commandservices..", "..application.queryservices..")
+            .adapter("outbound", "..infrastructure..", "..application.outboundservices..")
             .adapter("inbound", "..interfaces..");
 
     @ArchTest

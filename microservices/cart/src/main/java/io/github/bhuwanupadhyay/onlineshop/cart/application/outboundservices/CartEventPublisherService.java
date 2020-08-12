@@ -1,4 +1,4 @@
-package io.github.bhuwanupadhyay.onlineshop.cart.infrastructure.services.events;
+package io.github.bhuwanupadhyay.onlineshop.cart.application.outboundservices;
 
 import io.github.bhuwanupadhyay.ddd.DomainEvent;
 import io.github.bhuwanupadhyay.ddd.DomainEventPublisher;
