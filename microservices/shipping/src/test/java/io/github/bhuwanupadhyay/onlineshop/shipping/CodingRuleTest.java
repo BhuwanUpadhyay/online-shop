@@ -1,4 +1,4 @@
-package io.github.bhuwanupadhyay.onlineshop.history;
+package io.github.bhuwanupadhyay.onlineshop.shipping;
 
 import com.tngtech.archunit.core.domain.JavaClasses;
 import com.tngtech.archunit.junit.AnalyzeClasses;
@@ -16,7 +16,7 @@ import static com.tngtech.archunit.library.GeneralCodingRules.*;
 @AnalyzeClasses(packages = CodingRuleTest.PACKAGE)
 class CodingRuleTest {
 
-    public static final String PACKAGE = "io.github.bhuwanupadhyay.onlineshop.history";
+    public static final String PACKAGE = "io.github.bhuwanupadhyay.onlineshop.user";
 
     @ArchTest
     private final ArchRule classes_are_under_packages = ArchRuleDefinition.classes()

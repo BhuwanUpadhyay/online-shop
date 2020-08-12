@@ -16,7 +16,7 @@ import static com.tngtech.archunit.library.GeneralCodingRules.*;
 @AnalyzeClasses(packages = CodingRuleTest.PACKAGE)
 class CodingRuleTest {
 
-    public static final String PACKAGE = "io.github.bhuwanupadhyay.onlineshop.cart";
+    public static final String PACKAGE = "io.github.bhuwanupadhyay.onlineshop.order";
 
     @ArchTest
     private final ArchRule classes_are_under_packages = ArchRuleDefinition.classes()
