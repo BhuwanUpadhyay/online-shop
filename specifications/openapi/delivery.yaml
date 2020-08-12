@@ -1,8 +1,8 @@
 openapi: 3.0.3
 info:
-  title: Online Shop - Delivery v1 REST API
+  title: Online Shop - Shopping Cart v1 REST API
   version: '0.0.0'
-  description: Online Shop - Delivery v1 REST API.
+  description: Online Shop - Shopping Cart v1 REST API.
   contact:
     name: Bhuwan Prasad Upadhyay
     email: bot.bhuwan@gmail.com
@@ -13,35 +13,77 @@ info:
 servers:
   - url: 'https://api.onlineshop.com'
 paths:
-  /delivery:
+  /carts:
     post:
-      summary: Deliver Order
+      summary: Create new shopping cart
       description: >
-        This endpoint allow to deliver order.
+        This endpoint allow to create new shopping cart.
       tags:
-        - delivery-command
-      operationId: deliver-order
+        - cart-command
+      operationId: create-cart
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/DeliveryResource'
+              $ref: '#/components/schemas/CartResource'
       responses:
-        '204':
-          description: OK - No Content
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartResource'
+  /carts/{userId}:
+    get:
+      summary: Get user card
+      description: This endpoint allow to get user cart detail.
+      tags:
+        - cart-query
+      operationId: get-user-cart
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: User Id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartResource'
 components:
   schemas:
-    DeliveryResource:
+    LineItemResource:
       type: object
       properties:
-        orderId:
+        id:
           type: string
-        delivered:
-          type: boolean
-        reasonForFailure:
+        name:
           type: string
+        price:
+          type: double
+        quantity:
+          type: integer
+        inventoryId:
+          type: string
+    CartResource:
+      type: object
+      properties:
+        userId:
+          type: string
+        activeSince:
+          type: long
+        coupon:
+          type: string
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItemResource'
 tags:
-  - name: delivery-query
-    description: Delivery Query API
-  - name: delivery-command
-    description: Delivery Command API
+  - name: cart-query
+    description: Shopping Cart Query API
+  - name: cart-command
+    description: Shopping Cart Command API

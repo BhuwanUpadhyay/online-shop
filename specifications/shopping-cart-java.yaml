@@ -1,5 +1,5 @@
 '!include': 'shared/java.yaml'
-inputSpec: 'openapi/shopping-cart.yaml'
+inputSpec: 'openapi/cart.yaml'
 outputDir: 'dist/shopping-cart/java-client'
 artifactId: 'shopping-cart-rest-api-java-client'
 apiPackage: 'io.github.bhuwanupadhyay.shoppingcart.client.rest'

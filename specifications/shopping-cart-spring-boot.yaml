@@ -1,5 +1,5 @@
 '!include': 'shared/spring-boot.yaml'
-inputSpec: 'openapi/shopping-cart.yaml'
+inputSpec: 'openapi/cart.yaml'
 outputDir: 'dist/shopping-cart/spring-boot'
 artifactId: 'shopping-cart-spring-boot-api'
 apiPackage: 'io.github.bhuwanupadhyay.shoppingcart.interfaces.rest'
