@@ -27,6 +27,7 @@
         <spring-boot.version>2.3.1.RELEASE</spring-boot.version>
         <spring-cloud.version>Hoxton.SR6</spring-cloud.version>
         <specification.version>1.0.0</specification.version>
+        <skip.boot.features>false</skip.boot.features>
     </properties>
 
     <dependencyManagement>
@@ -54,17 +55,31 @@
     </dependencyManagement>
 
     <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
         <pluginManagement>
             <plugins>
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <version>${spring-boot.version}</version>
+                    <configuration>
+                        <skip>${skip.boot.features}</skip>
+                    </configuration>
                     <executions>
                         <execution>
                             <goals>
-                                <goal>repackage</goal>
+                                <goal>build-image</goal>
                             </goals>
+                            <configuration>
+                                <imageName>
+                                    docker.io/bhuwanupadhyay/os-${project.artifactId}:${project.version}
+                                </imageName>
+                            </configuration>
                         </execution>
                     </executions>
                 </plugin>

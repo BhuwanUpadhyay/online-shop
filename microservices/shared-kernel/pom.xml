@@ -11,6 +11,10 @@
 
     <artifactId>shared-kernel</artifactId>
 
+    <properties>
+        <skip.boot.features>true</skip.boot.features>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>javax.persistence</groupId>
