@@ -10,12 +10,12 @@ import {NbMenuModule} from "@nebular/theme";
 @NgModule({
   declarations: [
     BazzarComponent,
-    HomeBazzarComponent
+    HomeBazzarComponent,
   ],
   imports: [
     ThemeModule,
     NbMenuModule,
-    BazzarRoutingModule
+    BazzarRoutingModule,
   ]
 })
 export class BazzarModule {
