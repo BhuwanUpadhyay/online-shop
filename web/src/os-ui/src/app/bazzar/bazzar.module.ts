@@ -16,7 +16,7 @@ import {NbMenuModule} from '@nebular/theme';
     ThemeModule,
     NbMenuModule,
     BazzarRoutingModule,
-  ]
+  ],
 })
 export class BazzarModule {
 }
