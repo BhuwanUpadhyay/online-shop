@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'ngx-my-bazzar',
+  selector: 'ngx-bazzar-home',
   template: `
     <p>
       my-bazzar works!
     </p>
   `,
-  styleUrls: ['bazzar-home.component.scss']
+  styleUrls: ['home.bazzar.scss']
 })
-export class BazzarHomeComponent implements OnInit {
+export class HomeBazzarComponent implements OnInit {
 
   constructor() { }
 
