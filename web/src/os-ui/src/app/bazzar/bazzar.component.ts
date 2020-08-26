@@ -7,7 +7,7 @@ import {Component} from '@angular/core';
       <router-outlet></router-outlet>
     </ngx-container-layout>
   `,
-  styleUrls: ['bazzar.component.scss']
+  styleUrls: ['bazzar.component.scss'],
 })
 export class BazzarComponent {
 
