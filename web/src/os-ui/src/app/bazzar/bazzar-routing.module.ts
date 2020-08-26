@@ -1,8 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {BazzarComponent} from "./bazzar.component";
-import {HomeBazzarComponent} from "./home/home.bazzar";
-import {NotFoundComponent} from "../pages/miscellaneous/not-found/not-found.component";
+import {BazzarComponent} from './bazzar.component';
+import {HomeBazzarComponent} from './home/home.bazzar';
+import {NotFoundComponent} from '../pages/miscellaneous/not-found/not-found.component';
 
 const routes: Routes = [
   {
