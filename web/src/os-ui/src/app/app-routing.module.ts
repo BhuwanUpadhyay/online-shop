@@ -11,6 +11,11 @@ import {
 
 export const routes: Routes = [
   {
+    path: 'bazzar',
+    loadChildren: () => import('./bazzar/bazzar.module')
+      .then(m => m.BazzarModule),
+  },
+  {
     path: 'pages',
     loadChildren: () => import('./pages/pages.module')
       .then(m => m.PagesModule),
