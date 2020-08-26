@@ -7,7 +7,7 @@ import {Component, OnInit} from '@angular/core';
       my-bazzar works!
     </p>
   `,
-  styleUrls: ['home.bazzar.scss'],
+  styleUrls: ['home-bazzar.component.scss'],
 })
 export class HomeBazzarComponent implements OnInit {
 
