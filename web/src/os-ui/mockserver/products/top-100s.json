@@ -1,17 +1,20 @@
 {
   "httpRequest": {
     "method": "GET",
-    "path": "/view/cart",
+    "path": "/products/today",
     "queryStringParameters": {
-      "cartId": [
-        "055CA455-1DF7-45BB-8535-4F83E7266092"
+      "size": [
+        "100"
       ]
-    },
-    "cookies": {
-      "session": "4930456C-C718-476F-971F-CB8E047AB349"
     }
   },
   "httpResponse": {
-    "body": "some_response_body"
+    "body": {
+      "content": [
+        {
+          "name": "P1"
+        }
+      ]
+    }
   }
 }
