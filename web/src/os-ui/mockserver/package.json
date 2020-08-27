@@ -1,9 +1,10 @@
 {
   "name": "run_mockserver",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
-  "license": "Apache-2.0",
+  "scripts": {
+    "server": "node server.js",
+    "client": "node client.js"
+  },
   "dependencies": {
     "mockserver-client": "5.11.1",
     "mockserver-node": "5.11.1"

@@ -1,17 +1,5 @@
-const mockserver = require('mockserver-node');
 const mockServerClient = require('mockserver-client').mockServerClient;
 const fs = require('fs');
-
-mockserver
-  .start_mockserver({serverPort: 18080, verbose: true})
-  .then(
-    function () {
-      console.log("started MockServer");
-    },
-    function (error) {
-      console.log(JSON.stringify(error, null, "  "));
-    }
-  );
 
 function ok() {
   return function () {
