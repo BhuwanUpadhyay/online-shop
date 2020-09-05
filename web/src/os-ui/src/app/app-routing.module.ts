@@ -12,7 +12,7 @@ import {
 export const routes: Routes = [
   {
     path: 'bazzar',
-    loadChildren: () => import('./bazzar/bazzar.module')
+    loadChildren: () => import('../../projects/os/bazzar/src/lib/bazzar.module')
       .then(m => m.BazzarModule),
   },
   {

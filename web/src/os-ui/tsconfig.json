@@ -12,6 +12,12 @@
     },
     {
       "path": "./src/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/os/bazzar/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/os/bazzar/tsconfig.spec.json"
     }
   ]
 }

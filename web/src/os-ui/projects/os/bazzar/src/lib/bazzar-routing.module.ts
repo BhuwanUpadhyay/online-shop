@@ -1,8 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {BazzarComponent} from './bazzar.component';
-import {HomeBazzarComponent} from './home-bazzar/home-bazzar.component';
-import {NotFoundComponent} from '../pages/miscellaneous/not-found/not-found.component';
+import {NotFoundComponent} from '../../../../../src/app/pages/miscellaneous/not-found/not-found.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -11,7 +11,7 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
-        component: HomeBazzarComponent,
+        component: DashboardComponent,
       },
       {
         path: '',

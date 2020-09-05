@@ -18,7 +18,15 @@
       "dom"
     ],
     "plugins": [
-      { "name": "tslint-language-service"}
-    ]
+      {
+        "name": "tslint-language-service"
+      }
+    ],
+    "paths": {
+      "@os/bazzar": [
+        "dist/os/bazzar/os-bazzar",
+        "dist/os/bazzar"
+      ]
+    }
   }
 }

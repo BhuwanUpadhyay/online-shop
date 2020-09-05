@@ -180,6 +180,46 @@
           }
         }
       }
+    },
+    "@os/bazzar": {
+      "projectType": "library",
+      "root": "projects/os/bazzar",
+      "sourceRoot": "projects/os/bazzar/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/os/bazzar/tsconfig.lib.json",
+            "project": "projects/os/bazzar/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/os/bazzar/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/os/bazzar/src/test.ts",
+            "tsConfig": "projects/os/bazzar/tsconfig.spec.json",
+            "karmaConfig": "projects/os/bazzar/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/os/bazzar/tsconfig.lib.json",
+              "projects/os/bazzar/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "ngx-admin-demo",
