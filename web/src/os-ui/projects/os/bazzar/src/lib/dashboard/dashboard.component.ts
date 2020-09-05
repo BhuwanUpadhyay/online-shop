@@ -4,25 +4,37 @@ import {BazzarService} from '../bazzar.service';
 @Component({
   selector: 'ngx-dashboard',
   template: `
-    <div class="infinite-cards row">
-      <div class="col-md-12 col-lg-12 col-xl-12">
-        <nb-card>
-          <nb-card-header>Bazzar</nb-card-header>
-          <nb-list
-            nbInfiniteList
-            listenWindowScroll
-            [threshold]="500"
-            (bottomThreshold)="loadNext(secondCard)">
-            <nb-list-item *ngFor="let newsPost of secondCard.news">
-              <ngx-product [post]="newsPost"></ngx-product>
-            </nb-list-item>
-          </nb-list>
+    <div class="row">
+      <div class="col-md-12 col-lg-3 col-xl-3">
+        <ngx-selection-sidebar></ngx-selection-sidebar>
+      </div>
+      <div class="col-md-9 col-lg-9 col-xl-9">
+        <nb-card size="giant">
+          <nb-tabset>
+            <nb-tab tabTitle="Today's Deals">
+              <ngx-today-deals></ngx-today-deals>
+            </nb-tab>
+            <nb-tab tabTitle="Best Sellers">
+              <ngx-best-sellers></ngx-best-sellers>
+            </nb-tab>
+          </nb-tabset>
         </nb-card>
       </div>
     </div>
   `,
 })
 export class DashboardComponent {
+
+  tabs: any[] = [
+    {
+      title: 'Today\'s Deals',
+      route: '/bazzar/today/deals',
+    },
+    {
+      title: 'Best Sellers',
+      route: '/bazzar/top/sellers',
+    },
+  ];
 
   firstCard = {
     news: [],
