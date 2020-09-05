@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
       best-sellers works!
     </p>
   `,
-  styleUrls: ['./best-sellers.component.scss']
+  styleUrls: ['./best-sellers.component.scss'],
 })
 export class BestSellersComponent implements OnInit {
 

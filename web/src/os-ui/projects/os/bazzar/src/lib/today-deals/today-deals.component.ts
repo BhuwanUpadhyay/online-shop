@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
       today-deals works!
     </p>
   `,
-  styleUrls: ['./today-deals.component.scss']
+  styleUrls: ['./today-deals.component.scss'],
 })
 export class TodayDealsComponent implements OnInit {
 
