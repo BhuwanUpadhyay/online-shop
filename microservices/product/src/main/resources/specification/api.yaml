@@ -1,0 +1,387 @@
+openapi: 3.0.1
+info:
+  title: Product Service
+  description: "##  Product Service ###
+
+    \ Product API goal is to manage products offered by service provider.
+     \n\n"
+  version: 0.0.1
+  contact:
+    name: Lead by Examples
+    email: bot.bhuwan@gmail.com
+    url: https://lead-by-examples.github.io
+servers:
+  - url: https://api.os.com.np
+    description: Production server
+  - url: https://api-acc.os.com.np
+    description: Acceptance server
+  - url: https://api-dev.os.com.np
+    description: Development server (uses test data)
+tags:
+  - name: Product
+paths:
+  /products:
+    get:
+      tags:
+        - Product
+      summary: Find Products.
+      description: This operation list or find Product entities
+      operationId: findProducts
+      parameters:
+        - name: filters
+          in: query
+          description: Comma-separated properties with operand and vgalue for filters
+          schema:
+            type: string
+          example:
+            - "name=eq(123) or neq(543),description=like(Veg),category=in(A,B)"
+        - name: offset
+          in: query
+          description: Requested index for start of resources to be provided in response
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          description: Requested number of resources to be provided in response
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Success
+          headers:
+            X-Total-Count:
+              description: Total number of items matching criteria
+              schema:
+                type: integer
+            X-Result-Count:
+              description: Actual number of items returned in the response body
+              schema:
+                type: integer
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductResource'
+        400:
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        401:
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        403:
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        500:
+          description: Internal Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+    post:
+      tags:
+        - Product
+      summary: Creates a Product
+      description: This operation creates a Product entity.
+      operationId: createProduct
+      requestBody:
+        description: The Product to be created
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/ProductCreate'
+        required: true
+      responses:
+        201:
+          description: Created
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/ProductResource'
+        400:
+          description: Bad Request
+          content:
+            application/problem+json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        401:
+          description: Unauthorized
+          content:
+            application/problem+json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        403:
+          description: Forbidden
+          content:
+            application/problem+json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Problem'
+
+        409:
+          description: Conflict
+          content:
+            application/problem+json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        500:
+          description: Internal Server Error
+          content:
+            application/problem+json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Problem'
+  /products/{id}:
+    get:
+      tags:
+        - Product
+      summary: Retrieves a Product by ID
+      description: This operation retrieves a Product entity. Attribute selection
+        is enabled for all first level attributes.
+      operationId: findProduct
+      parameters:
+        - name: id
+          in: path
+          description: Identifier of the Product
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/ProductResource'
+        401:
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        403:
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        404:
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        500:
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Problem'
+    delete:
+      tags:
+        - Product
+      summary: Deletes a Product
+      description: This operation deletes a Product entity.
+      operationId: deleteProduct
+      parameters:
+        - name: id
+          in: path
+          description: Identifier of the Product
+          required: true
+          schema:
+            type: string
+      responses:
+        204:
+          description: Deleted
+          content: { }
+        401:
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        403:
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        404:
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        500:
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Problem'
+    patch:
+      tags:
+        - Product
+      summary: Updates partially a Product
+      description: This operation updates partially a Product entity.
+      operationId: patchProduct
+      parameters:
+        - name: id
+          in: path
+          description: Identifier of the Product
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: The Product to be updated
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/ProductUpdate'
+        required: true
+      responses:
+        200:
+          description: Updated
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/ProductResource'
+        400:
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        401:
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        403:
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        404:
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        409:
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        500:
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Problem'
+components:
+  schemas:
+    ProductResource:
+      type: object
+      description: A collection of Product Offerings, intended for a specific DistributionChannel,
+        enhanced with additional information such as SLA parameters, invoicing and
+        shipping details
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the Product
+        name:
+          type: string
+          description: Name of the product
+        description:
+          type: string
+          description: Description of this product
+        category:
+          type: array
+          description: List of root categories contained in this product
+          items:
+            $ref: '#/components/schemas/CategoryRef'
+    ProductCreate:
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the product
+        description:
+          type: string
+          description: Description of this product
+      description: |-
+        A collection of Product Offerings, intended for a specific DistributionChannel, enhanced with additional information such as SLA parameters, invoicing and shipping details
+    ProductUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+          description: Name of the product
+        description:
+          type: string
+          nullable: true
+          description: Description of this product
+      description: |-
+        A collection of Product Offerings, intended for a specific DistributionChannel, enhanced with additional information such as SLA parameters, invoicing and shipping details
+    CategoryRef:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier of Category
+      description: Category reference
+    Problem:
+      type: object
+      properties:
+        type:
+          type: string
+          format: uri
+          description: |
+            An absolute URI that identifies the problem type.  When dereferenced,
+            it SHOULD provide human-readable documentation for the problem type
+            (e.g., using HTML).
+          default: 'about:blank'
+          example: 'https://zalando.github.io/problem/constraint-violation'
+        title:
+          type: string
+          description: |
+            A short, summary of the problem type. Written in english and readable
+            for engineers (usually not suited for non technical stakeholders and
+            not localized); example: Service Unavailable
+        status:
+          type: integer
+          format: int32
+          description: |
+            The HTTP status code generated by the origin server for this occurrence
+            of the problem.
+          minimum: 100
+          maximum: 600
+          exclusiveMaximum: true
+          example: 503
+        detail:
+          type: string
+          description: |
+            A human readable explanation specific to this occurrence of the
+            problem.
+          example: Connection to database timed out
+        instance:
+          type: string
+          format: uri
+          description: |
+            An absolute URI that identifies the specific occurrence of the problem.
+            It may or may not yield further information if dereferenced.
