@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-@FeignClient("order-service")
+@FeignClient("orders")
 public interface OrderServiceClient {
 
     @RequestMapping(method = RequestMethod.GET, value = "/orders/{orderId}")

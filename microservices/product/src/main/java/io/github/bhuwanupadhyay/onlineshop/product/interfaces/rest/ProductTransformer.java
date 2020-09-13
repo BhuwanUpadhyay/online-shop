@@ -2,7 +2,9 @@ package io.github.bhuwanupadhyay.onlineshop.product.interfaces.rest;
 
 
 import io.github.bhuwanupadhyay.onlineshop.product.domain.model.aggregates.Product;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ProductTransformer {
 
     public ProductResource toResource(Product product) {
