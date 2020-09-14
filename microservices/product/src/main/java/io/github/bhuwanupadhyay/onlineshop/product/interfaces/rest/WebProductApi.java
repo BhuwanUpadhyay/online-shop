@@ -3,10 +3,13 @@ package io.github.bhuwanupadhyay.onlineshop.product.interfaces.rest;
 import io.github.bhuwanupadhyay.onlineshop.product.application.queryservices.ProductQueryService;
 import io.github.bhuwanupadhyay.onlineshop.product.domain.model.aggregates.Product;
 import io.github.bhuwanupadhyay.onlineshop.product.domain.model.repositories.Products;
+import io.github.bhuwanupadhyay.onlineshop.product.interfaces.rest.validators.ProductCreateSyntaxValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
@@ -24,6 +27,11 @@ public class WebProductApi implements ProductsApi {
     private final Products products;
     private final ProductTransformer transformer;
     private final ProductQueryService queryService;
+
+    @InitBinder
+    public void initBinder(WebDataBinder dataBinder) {
+        dataBinder.addValidators(new ProductCreateSyntaxValidator());
+    }
 
     @Override
     public Mono<ResponseEntity<ProductResource>> createProduct(Mono<ProductCreate> productCreate, ServerWebExchange exchange) {
