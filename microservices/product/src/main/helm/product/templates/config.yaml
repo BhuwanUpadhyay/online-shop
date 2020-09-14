@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "product.fullname" . }}-config
+  labels:
+    {{- include "product.labels" . | nindent 4 }}
+data:
+  application.yaml: |-
+    management:
+      endpoints:
+        web:
+          base-path: /actuator
+          exposure:
+            include: ['configprops', 'env', 'health', 'info', 'logfile', 'loggers', 'threaddump']
+      endpoint:
+        health:
+          show-details: always
+    spring:
+      application:
+        name: product
+    ---
+    spring:
+      profiles: dev
+      r2dbc:
+        url: jdbc:h2:mem://test?options=DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    ---
+    spring:
+      profiles: prod
+      datasource:
+        url: jdbc:postgresql://{{ .Release.Name }}-productdb:5432/product
+        username: user
+        password: password
+        driver-class-name: org.postgresql.Driver
+      cloud:
+        kubernetes:
+          discovery:
+            enabled: false
+        consul:
+          enabled: false
+        stream:
+          default-binder: kafka
+          kafka:
+            binder:
+              brokers:
+                - {{ .Release.Name }}-kafka:9092

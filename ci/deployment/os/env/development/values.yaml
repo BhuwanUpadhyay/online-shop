@@ -1,0 +1,12 @@
+gateway:
+  enabled: true
+kafka:
+  enabled: true
+product:
+  enabled: true
+productdb:
+  postgresqlDatabase: product
+  postgresqlUsername: user
+  postgresqlPassword: password
+  persistence:
+    enabled: false

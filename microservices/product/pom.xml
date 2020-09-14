@@ -103,15 +103,12 @@
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
+            <version>${mapstruct.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct-processor</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
+            <version>${mapstruct.version}</version>
             <scope>provided</scope>
         </dependency>
 
@@ -153,15 +150,50 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>build-image</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <imageName>docker.io/os/${project.artifactId}:${project.version}</imageName>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
                 <version>${openapi-generator-maven-plugin.version}</version>
             </plugin>
+            <plugin>
+                <groupId>com.kiwigrid</groupId>
+                <artifactId>helm-maven-plugin</artifactId>
+            </plugin>
         </plugins>
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <groupId>com.kiwigrid</groupId>
+                    <artifactId>helm-maven-plugin</artifactId>
+                    <version>5.5</version>
+                    <executions>
+                        <execution>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>lint</goal>
+                                <goal>package</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <chartDirectory>${project.basedir}/src/main/helm/${project.artifactId}</chartDirectory>
+                        <chartVersion>${project.version}</chartVersion>
+                        <appVersion>${project.version}</appVersion>
+                        <lintStrict>true</lintStrict>
+                        <helmExecutableDirectory>.cache/linux-amd64</helmExecutableDirectory>
+                    </configuration>
+                </plugin>
                 <plugin>
                     <groupId>org.openapitools</groupId>
                     <artifactId>openapi-generator-maven-plugin</artifactId>

@@ -12,15 +12,15 @@
     <artifactId>microservices</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>shared-kernel</module>
+<!--        <module>shared-kernel</module>-->
         <module>product</module>
-        <module>order</module>
-        <module>inventory</module>
-        <module>cart</module>
-        <module>user</module>
-        <module>shipping</module>
-        <module>delivery</module>
-        <module>history</module>
+<!--        <module>order</module>-->
+<!--        <module>inventory</module>-->
+<!--        <module>cart</module>-->
+<!--        <module>user</module>-->
+<!--        <module>shipping</module>-->
+<!--        <module>delivery</module>-->
+<!--        <module>history</module>-->
     </modules>
 
     <properties>

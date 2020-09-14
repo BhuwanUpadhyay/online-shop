@@ -55,7 +55,8 @@ class WebProductApiUnitTests {
                 .bodyValue(createCommand)
                 .exchange()
                 .expectHeader().contentType(PROBLEM_JSON)
-                .expectStatus().isBadRequest();
+                .expectStatus().isBadRequest()
+                .expectBody();
     }
 
     @Test
