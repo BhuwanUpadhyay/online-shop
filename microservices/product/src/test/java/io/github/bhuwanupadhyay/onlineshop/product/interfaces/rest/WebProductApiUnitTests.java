@@ -92,14 +92,17 @@ class WebProductApiUnitTests {
     void whenGetAllShouldReturn200() {
         int offset = 1;
         int limit = 20;
-        List<Product> products = List.of(mock(Product.class), mock(Product.class));
+        Product e1 = new Product(ProductId.create(), "Ear Phone", "Audible ear phone");
+        Product e2 = new Product(ProductId.create(), "Laptop", "Office work laptop");
+        List<Product> products = List.of(e1, e2);
         when(queryService.findAll(any(PageRequest.class))).thenReturn(new PageImpl<>(products));
+        when(transformer.toResource(eq(e1))).thenReturn(new ProductTransformer().toResource(e1));
+        when(transformer.toResource(eq(e2))).thenReturn(new ProductTransformer().toResource(e2));
 
         client.get()
                 .uri(b -> b.path("/products").queryParam("offset", offset).queryParam("limit", limit).build())
-                .accept(MediaType.APPLICATION_JSON)
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(ProductResource.class);
+                .expectBody(ProductResource[].class);
     }
 }
