@@ -72,7 +72,6 @@ class WebProductApiUnitTests {
                 .accept(MediaType.APPLICATION_JSON)
                 .bodyValue(createCommand)
                 .exchange()
-                .expectHeader().contentType(MediaType.APPLICATION_JSON)
                 .expectStatus().isCreated()
                 .expectBody(ProductResource.class);;
     }
@@ -85,7 +84,6 @@ class WebProductApiUnitTests {
         client.get()
                 .uri("/products/{id}", productId.getId().toString())
                 .exchange()
-                .expectHeader().contentType(MediaType.APPLICATION_JSON)
                 .expectStatus().isOk()
                 .expectBody(ProductResource.class);
     }
