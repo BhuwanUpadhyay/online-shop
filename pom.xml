@@ -7,7 +7,7 @@
     <groupId>io.github.bhuwanupadhyay</groupId>
     <artifactId>online-shop-parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>${revision}</version>
     <modules>
 <!--        <module>specifications</module>-->
 
@@ -23,26 +23,106 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <revision>1.0-SNAPSHOT</revision>
         <java.version>15</java.version>
+        <junit.jupiter.version>5.6.2</junit.jupiter.version>
+        <mockito-junit-jupiter.version>3.3.3</mockito-junit-jupiter.version>
+        <assertj-core.version>3.10.0</assertj-core.version>
+        <archunit.version>0.14.1</archunit.version>
     </properties>
 
     <dependencies>
+        <!-- Test -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.7.0-M1</version>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj-core.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>${mockito-junit-jupiter.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.tngtech.archunit</groupId>
             <artifactId>archunit-junit5</artifactId>
-            <version>0.14.1</version>
+            <version>${archunit.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>3.0.0-M3</version>
+                <executions>
+                    <execution>
+                        <id>enforce-no-third-party-snapshots</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <reactorModuleConvergence>
+                                    <message>
+                                        This rule checks that the versions within the reactor are consistent furthermore
+                                        it will check that every module within the project contains a parent and that
+                                        the parent is part of the reactor build. Furthermore it will be checked if
+                                        dependencies are inter module dependencies that they using the same version as
+                                        given by the reactor.
+                                    </message>
+                                    <ignoreModuleDependencies>false
+                                    </ignoreModuleDependencies>
+                                </reactorModuleConvergence>
+                                <requireReleaseDeps>
+                                    <message>No SNAPSHOT Allowed!</message>
+                                    <failWhenParentIsSnapshot>false
+                                    </failWhenParentIsSnapshot>
+                                    <excludes>
+                                        <exclude>io.github.bhuwanupadhyay:*</exclude>
+                                    </excludes>
+                                </requireReleaseDeps>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <configuration>
+                    <updatePomFile>true</updatePomFile>
+                    <flattenMode>resolveCiFriendliesOnly</flattenMode>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>flatten</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>flatten.clean</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M5</version>

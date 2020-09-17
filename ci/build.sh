@@ -2,25 +2,20 @@
 set -e
 
 option="${1}"
-default_version='0.0.0-SNAPSHOT'
+default_version='1.0-SNAPSHOT'
 next_version="${2:-$default_version}"
 
 case ${option} in
    --build)
-      ./mvnw -s .github/settings.xml \
+      ./mvnw \
         -B -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn -V \
         clean install -Drevision="$next_version"
       ;;
-   --docs)
-      ./mvnw -s .github/settings.xml \
-        -B -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn -V \
-        clean install -pl :docs -Denforcer.skip=true -Drevision="$next_version"
-      ;;
    --publish)
       # Publish Docker Images
-      for i in "gateway" "workflow-engine" "inventory-service" ; do
+      for i in "product" ; do
         echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-        docker push docker.io/bhuwanupadhyay/$i:"$next_version"
+        docker push docker.io/os/$i:"$next_version"
         echo "----------------------------------------------"
       done
 

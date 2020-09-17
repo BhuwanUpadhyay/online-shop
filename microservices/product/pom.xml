@@ -5,7 +5,7 @@
     <parent>
         <artifactId>microservices</artifactId>
         <groupId>io.github.bhuwanupadhyay</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -48,6 +48,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-kubernetes-config</artifactId>
         </dependency>
 
         <!--Open API spec code generation	-->
@@ -150,80 +154,81 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
+                <configuration>
+                    <layers>
+                        <enabled>true</enabled>
+                    </layers>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <version>1.4.13</version>
                 <executions>
                     <execution>
+                        <id>default</id>
                         <goals>
-                            <goal>build-image</goal>
+                            <goal>build</goal>
                         </goals>
                     </execution>
                 </executions>
                 <configuration>
-                    <imageName>docker.io/os/${project.artifactId}:${project.version}</imageName>
+                    <repository>docker.io/os/${project.artifactId}</repository>
+                    <dockerfile>${project.basedir}/src/main/docker/Dockerfile</dockerfile>
+                    <tag>${project.version}</tag>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
                 <version>${openapi-generator-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/resources/specification/api.yaml</inputSpec>
+                            <generatorName>spring</generatorName>
+                            <apiPackage>io.github.bhuwanupadhyay.onlineshop.product.interfaces.rest</apiPackage>
+                            <modelPackage>io.github.bhuwanupadhyay.onlineshop.product.interfaces.rest</modelPackage>
+                            <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
+                            <importMappings>Problem=org.zalando.problem.Problem</importMappings>
+                            <skipValidateSpec>false</skipValidateSpec>
+                            <configOptions>
+                                <interfaceOnly>true</interfaceOnly>
+                                <dateLibrary>java8-localdatetime</dateLibrary>
+                                <delegatePattern>false</delegatePattern>
+                                <title>product</title>
+                                <reactive>true</reactive>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>com.kiwigrid</groupId>
                 <artifactId>helm-maven-plugin</artifactId>
+                <version>5.5</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>lint</goal>
+                            <goal>package</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <chartDirectory>${project.basedir}/src/main/helm/${project.artifactId}</chartDirectory>
+                    <chartVersion>${project.version}</chartVersion>
+                    <appVersion>${project.version}</appVersion>
+                    <lintStrict>true</lintStrict>
+                    <helmExecutableDirectory>.cache/linux-amd64</helmExecutableDirectory>
+                </configuration>
             </plugin>
         </plugins>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>com.kiwigrid</groupId>
-                    <artifactId>helm-maven-plugin</artifactId>
-                    <version>5.5</version>
-                    <executions>
-                        <execution>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>lint</goal>
-                                <goal>package</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                    <configuration>
-                        <chartDirectory>${project.basedir}/src/main/helm/${project.artifactId}</chartDirectory>
-                        <chartVersion>${project.version}</chartVersion>
-                        <appVersion>${project.version}</appVersion>
-                        <lintStrict>true</lintStrict>
-                        <helmExecutableDirectory>.cache/linux-amd64</helmExecutableDirectory>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.openapitools</groupId>
-                    <artifactId>openapi-generator-maven-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>generate</goal>
-                            </goals>
-                            <phase>generate-sources</phase>
-                            <configuration>
-                                <inputSpec>${project.basedir}/src/main/resources/specification/api.yaml</inputSpec>
-                                <generatorName>spring</generatorName>
-                                <apiPackage>io.github.bhuwanupadhyay.onlineshop.product.interfaces.rest</apiPackage>
-                                <modelPackage>io.github.bhuwanupadhyay.onlineshop.product.interfaces.rest</modelPackage>
-                                <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
-                                <importMappings>Problem=org.zalando.problem.Problem</importMappings>
-                                <skipValidateSpec>false</skipValidateSpec>
-                                <configOptions>
-                                    <interfaceOnly>true</interfaceOnly>
-                                    <dateLibrary>java8-localdatetime</dateLibrary>
-                                    <delegatePattern>false</delegatePattern>
-                                    <title>product</title>
-                                    <reactive>true</reactive>
-                                </configOptions>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </pluginManagement>
     </build>
 
 </project>

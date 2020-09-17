@@ -13,17 +13,17 @@ printf '\n'
 $helm_bin version
 printf '\n'
 
-DEPLOYMENT="rtms"
+DEPLOYMENT="os"
 
 option="${1}"
 case ${option} in
    --deploy)
         $helm_bin upgrade \
-        --install -f ci/deployment/rtms/env/development/values.yaml \
-        $DEPLOYMENT ci/deployment/rtms --force
+        --install -f ci/deployment/os/env/development/values.yaml \
+        $DEPLOYMENT ci/deployment/os --force
       ;;
    --update-deps)
-        $helm_bin dependency update ci/deployment/rtms
+        $helm_bin dependency update ci/deployment/os
       ;;
    --add-repos)
         $helm_bin repo add bitnami https://charts.bitnami.com/bitnami
