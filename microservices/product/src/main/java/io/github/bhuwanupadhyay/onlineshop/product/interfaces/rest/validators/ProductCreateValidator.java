@@ -3,18 +3,11 @@ package io.github.bhuwanupadhyay.onlineshop.product.interfaces.rest.validators;
 import io.github.bhuwanupadhyay.onlineshop.product.interfaces.rest.ProductCreate;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.validation.Errors;
-import org.springframework.validation.Validator;
 
-public class ProductCreateSyntaxValidator implements Validator {
-
-    @Override
-    public boolean supports(Class<?> clazz) {
-        return ProductCreate.class.equals(clazz);
-    }
+public class ProductCreateValidator extends SyntaxValidator<ProductCreate> {
 
     @Override
-    public void validate(Object o, Errors e) {
-        ProductCreate command = (ProductCreate) o;
+    protected void syntaxRules(ProductCreate command, Errors e) {
         if (StringUtils.isBlank(command.getName())) {
             e.reject("name", "name.empty");
         }

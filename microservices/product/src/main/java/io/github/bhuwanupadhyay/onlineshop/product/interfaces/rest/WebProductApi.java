@@ -3,11 +3,12 @@ package io.github.bhuwanupadhyay.onlineshop.product.interfaces.rest;
 import io.github.bhuwanupadhyay.onlineshop.product.application.queryservices.ProductQueryService;
 import io.github.bhuwanupadhyay.onlineshop.product.domain.model.aggregates.Product;
 import io.github.bhuwanupadhyay.onlineshop.product.domain.model.repositories.Products;
-import io.github.bhuwanupadhyay.onlineshop.product.interfaces.rest.validators.ProductCreateSyntaxValidator;
+import io.github.bhuwanupadhyay.onlineshop.product.interfaces.rest.validators.ProductCreateValidator;
+import io.github.bhuwanupadhyay.onlineshop.product.interfaces.rest.validators.ProductUpdateValidator;
+import io.github.bhuwanupadhyay.onlineshop.product.interfaces.rest.validators.SyntaxValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -16,22 +17,36 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import static io.github.bhuwanupadhyay.onlineshop.product.domain.model.aggregates.Product.ProductId;
 
 @RestController
-@RequiredArgsConstructor
 public class WebProductApi implements ProductsApi {
 
     private final Products products;
     private final ProductTransformer transformer;
     private final ProductQueryService queryService;
+    private final Map<Class<?>, Supplier<SyntaxValidator<?>>> validatorMap = new HashMap<>();
+
+    public WebProductApi(Products products, ProductTransformer transformer, ProductQueryService queryService) {
+        this.products = products;
+        this.transformer = transformer;
+        this.queryService = queryService;
+        this.validatorMap.put(ProductCreate.class, ProductCreateValidator::new);
+        this.validatorMap.put(ProductUpdate.class, ProductUpdateValidator::new);
+    }
 
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
-        dataBinder.addValidators(new ProductCreateSyntaxValidator());
+        Object target = dataBinder.getTarget();
+        if (target != null && validatorMap.containsKey(target.getClass())) {
+            dataBinder.addValidators(validatorMap.get(target.getClass()).get());
+        }
     }
 
     @Override
