@@ -15,12 +15,12 @@ case ${option} in
       # Publish Docker Images
       for i in "product" ; do
         echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-        docker push docker.io/os/$i:"$next_version"
+        docker push docker.io/bhuwanupadhyay/$i:"$next_version"
         echo "----------------------------------------------"
       done
 
       # Publish Helm Charts
-      for i in "gateway" "workflow-engine" "inventory/inventory-service" ; do
+      for i in "product" ; do
         echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
         HELM_CHART="$(sed 's/.*\///' <<< $i)-$next_version.tgz"
         HELM_CHART_FILE_PATH="$i/target/helm/repo/$HELM_CHART"

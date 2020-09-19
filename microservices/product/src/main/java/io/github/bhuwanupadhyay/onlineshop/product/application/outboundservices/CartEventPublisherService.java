@@ -24,7 +24,7 @@ public class CartEventPublisherService {
     @EventListener
     public void publish(DomainEvent domainEvent) {
         Map<String, Object> headers = new HashMap<>();
-        headers.put("x-source", "cart-service");
+        headers.put("X-Service", "Product");
         eventSource.eventsOut().send(MessageBuilder.createMessage(domainEvent, new MessageHeaders(headers)));
     }
 }

@@ -5,7 +5,7 @@
     <parent>
         <artifactId>tests</artifactId>
         <groupId>io.github.bhuwanupadhyay</groupId>
-        <version>${revision}</version>
+        <version>0.0-SNAPSHPT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 

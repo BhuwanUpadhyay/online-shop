@@ -18,13 +18,12 @@
 <!--        <module>gateway</module>-->
 <!--        <module>config</module>-->
 <!--        <module>registry</module>-->
-        <module>tests</module>
     </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <revision>0.0-SNAPSHOT</revision>
+        <revision>1.0-SNAPSHOT</revision>
         <java.version>15</java.version>
         <junit.jupiter.version>5.6.2</junit.jupiter.version>
         <mockito-junit-jupiter.version>3.3.3</mockito-junit-jupiter.version>

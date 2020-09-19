@@ -1,0 +1,12 @@
+server:
+  port: 28080
+spring:
+  cloud:
+    kubernetes:
+      config:
+        enabled: false
+  rabbitmq:
+    username: user
+    password: bitnami
+    host: localhost
+    port: 5672

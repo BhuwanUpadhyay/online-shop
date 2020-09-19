@@ -1,8 +1,5 @@
-feign:
-  hystrix:
-    enabled: true
-  httpclient:
-    enabled: false
 spring:
   liquibase:
     enabled: false
+  application:
+    name: product
