@@ -5,7 +5,7 @@ import com.intuit.karate.junit5.Karate;
 class ProductRunner {
 
     @Karate.Test
-    Karate testInventories() {
+    Karate testProduct() {
         return Karate.run("product").relativeTo(getClass());
     }
 }

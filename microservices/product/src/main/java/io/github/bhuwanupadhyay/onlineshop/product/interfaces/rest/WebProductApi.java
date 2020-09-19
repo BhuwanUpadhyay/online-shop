@@ -48,7 +48,7 @@ public class WebProductApi implements ProductsApi {
 
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
-        Object target = dataBinder.getTarget();
+        var target = dataBinder.getTarget();
         if (target != null && validators.containsKey(target.getClass())) {
             dataBinder.addValidators(validators.get(target.getClass()).get());
         }
@@ -65,7 +65,7 @@ public class WebProductApi implements ProductsApi {
 
     @Override
     public Mono<ResponseEntity<Void>> deleteProduct(String id, ServerWebExchange exchange) {
-        var productId = pathProductId(id);
+        final var productId = pathProductId(id);
         if (queryService.existsById(productId)) {
             products.deleteById(productId);
             return Mono.just(ResponseEntity.noContent().build());

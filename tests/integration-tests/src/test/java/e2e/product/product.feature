@@ -133,11 +133,6 @@ Feature: E2E Test - Product
     When method GET
     Then status 200
     And match header Content-Type == 'application/json;charset=utf-8'
-    And match header X-Total-Count == '1'
-    And match header X-Result-Count == '1'
-    And match $[0].id == id
-    And match $[0].name == 'Ear Max 2021'
-    And match $[0].description == 'Noise cancellation earphone'
 
   # DELETE
     Given path '/products/',id
