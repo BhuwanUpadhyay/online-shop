@@ -1,10 +1,10 @@
-FROM arm64v8/openjdk:15 as builder
+FROM mcr.microsoft.com/java/jre:15-zulu-alpine as builder
 WORKDIR /app
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
 RUN java -Djarmode=layertools -jar app.jar extract
 
-FROM arm64v8/openjdk:15
+FROM mcr.microsoft.com/java/jre:15-zulu-alpine
 WORKDIR /app
 COPY --from=builder app/dependencies/ ./
 COPY --from=builder app/spring-boot-loader/ ./

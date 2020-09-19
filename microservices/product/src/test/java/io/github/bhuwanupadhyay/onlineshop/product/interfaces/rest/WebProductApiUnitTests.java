@@ -5,7 +5,9 @@ import io.github.bhuwanupadhyay.onlineshop.product.domain.model.aggregates.Produ
 import io.github.bhuwanupadhyay.onlineshop.product.domain.model.aggregates.Product.ProductId;
 import io.github.bhuwanupadhyay.onlineshop.product.domain.model.repositories.Products;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.MethodOrderer.Alphanumeric;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
@@ -15,7 +17,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import org.zalando.problem.Problem;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,6 +28,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
+@TestMethodOrder(Alphanumeric.class)
 @WebFluxTest(WebProductApi.class)
 class WebProductApiUnitTests {
     public static final MediaType PROBLEM_JSON = new MediaType("application", "problem+json");

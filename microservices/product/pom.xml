@@ -194,6 +194,7 @@
                         </goals>
                         <phase>generate-sources</phase>
                         <configuration>
+                            <verbose>false</verbose>
                             <inputSpec>${project.basedir}/src/main/resources/specification/api.yaml</inputSpec>
                             <generatorName>spring</generatorName>
                             <apiPackage>io.github.bhuwanupadhyay.onlineshop.product.interfaces.rest</apiPackage>

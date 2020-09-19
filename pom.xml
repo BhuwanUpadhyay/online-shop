@@ -146,7 +146,7 @@
                     <showWarnings>true</showWarnings>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
-                    <verbose>true</verbose>
+                    <verbose>false</verbose>
                     <compilerArgs>--enable-preview</compilerArgs>
                 </configuration>
             </plugin>
