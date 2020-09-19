@@ -3,7 +3,7 @@ Feature: E2E Test - Product
   Background:
     * url baseUrl
 
-  Scenario: OK cases of Product API
+  Scenario: OK - API
 
   # POST
     Given path '/products'
@@ -47,15 +47,8 @@ Feature: E2E Test - Product
     And match $.name == 'Ear Max 2021'
     And match $.description == 'Noise cancellation earphone'
 
-  # GET all
+  # GET
     Given path '/products'
-    * def filters =
-    """
-      {
-        "id": id
-      }
-    """
-    And param filters = toString()
     When method GET
     Then status 200
     And match header Content-Type == 'application/json;charset=utf-8'
@@ -65,8 +58,76 @@ Feature: E2E Test - Product
     And match $[0].name == 'Ear Max 2021'
     And match $[0].description == 'Noise cancellation earphone'
 
-  # PUT
+  # DELETE
     Given path '/products/',id
     When method DELETE
+    Then status 204
+
+  Scenario: OK - Pagination
+    * def fun = function(x){ return { count: x } }
+    * def data = karate.repeat(17, fun)
+    * call read('create.feature') data
+
+  # GET
+    Given path '/products'
+    And param offset = 1
+    And param limit = 5
+    When method GET
     Then status 200
     And match header Content-Type == 'application/json;charset=utf-8'
+    And match header X-Total-Count == '17'
+    And match header X-Result-Count == '5'
+    And match $[0].name == 'name0'
+    And match $[0].description == 'description0'
+    And match $[4].name == 'name4'
+    And match $[4].description == 'description4'
+
+  Scenario: BAD - On Create
+
+  # POST
+    Given path '/products'
+    And request
+    """
+      {
+        "name" : "",
+        "description" : ""
+      }
+    """
+    And header Accept = 'application/json'
+    When method POST
+    Then status 400
+    And match header Content-Type == 'application/problem+json'
+
+  Scenario: BAD - On Get By Id
+
+  # GET
+    Given path '/products/not_exist_id'
+    When method GET
+    Then status 400
+    And match header Content-Type == 'application/problem+json'
+
+  Scenario: BAD - On Update
+    * call read('create.feature') { count: 100 }
+    * def id = $.id
+
+  # PATCH
+    Given path '/products/',id
+    And request
+    """
+      {
+        "name" : "",
+        "description" : ""
+      }
+    """
+    And header Accept = 'application/json'
+    When method PATCH
+    Then status 400
+    And match header Content-Type == 'application/problem+json'
+
+  Scenario: BAD - On Delete
+
+  # DELETE
+    Given path '/products/not_exist_id'
+    When method DELETE
+    Then status 400
+    And match header Content-Type == 'application/problem+json'
