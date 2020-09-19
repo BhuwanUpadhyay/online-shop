@@ -13,13 +13,12 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ServerWebExchange;
-import org.zalando.problem.Problem;
-import org.zalando.problem.StatusType;
-import org.zalando.problem.ThrowableProblem;
+import org.zalando.problem.*;
 import org.zalando.problem.violations.ConstraintViolationProblem;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -29,6 +28,7 @@ import java.util.stream.Collectors;
 
 import static io.github.bhuwanupadhyay.onlineshop.product.domain.model.aggregates.Product.ProductId;
 import static org.zalando.problem.Status.BAD_REQUEST;
+import static org.zalando.problem.Status.NOT_FOUND;
 
 @RestController
 public class WebProductApi implements ProductsApi {
@@ -66,14 +66,17 @@ public class WebProductApi implements ProductsApi {
     @Override
     public Mono<ResponseEntity<Void>> deleteProduct(String id, ServerWebExchange exchange) {
         var productId = pathProductId(id);
-        products.deleteById(productId);
-        return Mono.just(ResponseEntity.noContent().build());
+        if (queryService.existsById(productId)) {
+            products.deleteById(productId);
+            return Mono.just(ResponseEntity.noContent().build());
+        }
+        throw this.notFound();
     }
 
     @Override
     public Mono<ResponseEntity<ProductResource>> findProduct(String id, ServerWebExchange exchange) {
         final var productId = pathProductId(id);
-        var entity = queryService.findById(productId).orElseThrow(EntityNotFound::new);
+        var entity = queryService.findById(productId).orElseThrow(this::notFound);
         return Mono.just(ResponseEntity.ok(transformer.toResource(entity)));
     }
 
@@ -96,26 +99,28 @@ public class WebProductApi implements ProductsApi {
         final var productId = pathProductId(id);
         return productUpdate
                 .map(e -> {
-                    var entity = products.findById(productId)
-                            .orElseThrow(EntityNotFound::new);
+                    var entity = products.findById(productId).orElseThrow(this::notFound);
                     entity.update(e.getName().get(), e.getDescription().get());
                     return products.save(entity);
                 }).map(e -> ResponseEntity.status(HttpStatus.OK).body(transformer.toResource(e)));
     }
 
     private ProductId pathProductId(String id) {
-        Optional<UUID> uuid;
         try {
-            uuid = Optional.of(UUID.fromString(id));
+            return ProductId.of(UUID.fromString(id));
         } catch (IllegalArgumentException e) {
-            uuid = Optional.empty();
+            throw this.invalidProductId();
         }
-        return uuid.map(ProductId::of)
-                .orElseThrow(() -> Problem.builder()
-                        .withStatus(BAD_REQUEST)
-                        .withTitle("invalid product id")
-                        .withDetail("product id should be in UUID format.")
-                        .build());
+    }
+
+    private ThrowableProblem invalidProductId() {
+        return Problem.builder().withStatus(BAD_REQUEST).withTitle("invalid product id")
+                .withDetail("product id should be in UUID format.").build();
+    }
+
+    private ThrowableProblem notFound() {
+        return Problem.builder().withStatus(NOT_FOUND).withTitle("not found")
+                .withDetail("product does not exist").build();
     }
 
 }
