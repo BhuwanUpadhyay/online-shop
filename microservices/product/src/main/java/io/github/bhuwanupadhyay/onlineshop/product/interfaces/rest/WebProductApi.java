@@ -19,6 +19,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -73,6 +74,8 @@ public class WebProductApi implements ProductsApi {
 
     @Override
     public Mono<ResponseEntity<Flux<ProductResource>>> findProducts(String filters, Integer offset, Integer limit, ServerWebExchange exchange) {
+        offset = Optional.ofNullable(offset).filter(v -> v > 0).map(v -> v - 1).orElse(0);
+        limit = Optional.ofNullable(limit).filter(v -> v > 0).orElse(20);
         var page = queryService.findAll(PageRequest.of(offset, limit));
         return Mono.just(
                 ResponseEntity.status(HttpStatus.OK)
