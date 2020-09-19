@@ -3,6 +3,87 @@ Feature: E2E Test - Product
   Background:
     * url baseUrl
 
+  Scenario: BAD - On Create
+
+  # POST
+    Given path '/products'
+    And request
+    """
+      {
+        "name" : "",
+        "description" : ""
+      }
+    """
+    And header Accept = 'application/json'
+    When method POST
+    Then status 400
+    And match header Content-Type == 'application/problem+json'
+
+  Scenario: BAD - On Update
+    * call read('create.feature') { count: 100 }
+    * def id = $.id
+
+  # PATCH
+    Given path '/products/',id
+    And request
+    """
+      {
+        "name" : "",
+        "description" : ""
+      }
+    """
+    And header Accept = 'application/json'
+    When method PATCH
+    Then status 400
+    And match header Content-Type == 'application/problem+json'
+
+  Scenario: BAD - On Delete
+
+  # DELETE
+    Given path '/products/not_exist_id'
+    When method DELETE
+    Then status 400
+    And match header Content-Type == 'application/problem+json'
+
+  Scenario: BAD - On Get By Id
+
+  # GET
+    Given path '/products/not_exist_id'
+    When method GET
+    Then status 400
+    And match header Content-Type == 'application/problem+json'
+
+  Scenario: NOT_FOUND - On Update
+  # PATCH
+    Given path '/products/b87b3a25-4387-48df-b090-1b25379df3b0'
+    And request
+    """
+      {
+        "name" : "Check",
+        "description" : "Check"
+      }
+    """
+    And header Accept = 'application/json'
+    When method PATCH
+    Then status 404
+    And match header Content-Type == 'application/problem+json'
+
+  Scenario: NOT_FOUND - On Delete
+
+  # DELETE
+    Given path '/products/b87b3a25-4387-48df-b090-1b25379df3b0'
+    When method DELETE
+    Then status 404
+    And match header Content-Type == 'application/problem+json'
+
+  Scenario: NOT_FOUND - On Get By Id
+
+  # GET
+    Given path '/products/b87b3a25-4387-48df-b090-1b25379df3b0'
+    When method GET
+    Then status 404
+    And match header Content-Type == 'application/problem+json'
+
   Scenario: OK - API
 
   # POST
@@ -81,53 +162,3 @@ Feature: E2E Test - Product
     And match $[0].description == 'description0'
     And match $[4].name == 'name4'
     And match $[4].description == 'description4'
-
-  Scenario: BAD - On Create
-
-  # POST
-    Given path '/products'
-    And request
-    """
-      {
-        "name" : "",
-        "description" : ""
-      }
-    """
-    And header Accept = 'application/json'
-    When method POST
-    Then status 400
-    And match header Content-Type == 'application/problem+json'
-
-  Scenario: BAD - On Get By Id
-
-  # GET
-    Given path '/products/not_exist_id'
-    When method GET
-    Then status 400
-    And match header Content-Type == 'application/problem+json'
-
-  Scenario: BAD - On Update
-    * call read('create.feature') { count: 100 }
-    * def id = $.id
-
-  # PATCH
-    Given path '/products/',id
-    And request
-    """
-      {
-        "name" : "",
-        "description" : ""
-      }
-    """
-    And header Accept = 'application/json'
-    When method PATCH
-    Then status 400
-    And match header Content-Type == 'application/problem+json'
-
-  Scenario: BAD - On Delete
-
-  # DELETE
-    Given path '/products/not_exist_id'
-    When method DELETE
-    Then status 400
-    And match header Content-Type == 'application/problem+json'
