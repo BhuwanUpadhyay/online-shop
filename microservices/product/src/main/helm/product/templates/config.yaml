@@ -18,10 +18,16 @@ data:
     spring:
       application:
         name: product
+        stream:
+          default-binder: kafka
+          kafka:
+            binder:
+              brokers:
+                - {{ .Release.Name }}-kafka:9092
     ---
     spring:
       profiles: dev
-      r2dbc:
+      datasource:
         url: jdbc:h2:mem://test?options=DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     ---
     spring:
@@ -31,15 +37,3 @@ data:
         username: user
         password: password
         driver-class-name: org.postgresql.Driver
-      cloud:
-        kubernetes:
-          discovery:
-            enabled: false
-        consul:
-          enabled: false
-        stream:
-          default-binder: kafka
-          kafka:
-            binder:
-              brokers:
-                - {{ .Release.Name }}-kafka:9092

@@ -37,7 +37,7 @@ spec:
             - name: SPRING_PROFILES_ACTIVE
               value: {{ .Values.spring.profiles.active }}
             - name: SPRING_CLOUD_KUBERNETES_CONFIG_NAME
-              value: {{ include "helm-chart.fullname" . }}-config
+              value: {{ include "product.fullname" . }}-config
             - name: SPRING_CLOUD_KUBERNETES_CONFIG_NAMESPACE
               value: {{ .Release.Namespace }}
           ports:

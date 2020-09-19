@@ -1,13 +1,4 @@
-FROM mcr.microsoft.com/java/jre:15-zulu-alpine as builder
-WORKDIR /app
+FROM mcr.microsoft.com/java/jre:15-zulu-alpine
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
-RUN java -Djarmode=layertools -jar app.jar extract
-
-FROM mcr.microsoft.com/java/jre:15-zulu-alpine
-WORKDIR /app
-COPY --from=builder app/dependencies/ ./
-COPY --from=builder app/spring-boot-loader/ ./
-COPY --from=builder app/snapshot-dependencies/ ./
-COPY --from=builder app/application/ ./
-ENTRYPOINT ["java", "org.springframework.boot.loader.JarLauncher"]
+ENTRYPOINT ["java", "-jar" , "/app.jar"]

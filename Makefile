@@ -33,3 +33,6 @@ delete: ## Delete
 
 update: ## Update
 	ci/helm.sh --update-deps
+
+helm: ## Helm setup
+	ci/setup.sh
