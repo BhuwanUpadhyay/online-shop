@@ -12,12 +12,5 @@ public abstract class EntityRepository<T extends Entity<ID>, ID extends ValueObj
                 .orElseThrow(() -> new DomainEntityNotFound(this.getClass().getName(), id));
     }
 
-    public ID save(T entity) {
-        this.persist(entity);
-        return entity.getId();
-    }
-
-    protected abstract void persist(T entity);
-
     public abstract ID nextId();
 }
