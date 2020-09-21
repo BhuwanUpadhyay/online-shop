@@ -39,7 +39,7 @@ class CreateProductCommandServiceTest {
 
         Product product = new Product(productId, command);
 
-        when(products.save(eq(product))).thenReturn(product);
+        when(products.save(eq(product))).thenReturn(productId);
 
         Result<ProductId> result = commandService.execute(productId, command);
 

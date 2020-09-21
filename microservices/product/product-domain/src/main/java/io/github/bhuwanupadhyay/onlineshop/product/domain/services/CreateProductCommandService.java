@@ -17,7 +17,6 @@ public class CreateProductCommandService implements CommandService<ProductCreate
     @Override
     public Result<ProductId> execute(ProductId id, ProductCreateCommand command) {
         Product product = new Product(id, command);
-        Product saved = products.save(product);
-        return new Result<>(saved.getId());
+        return new Result<>(products.save(product));
     }
 }

@@ -26,9 +26,6 @@
     <properties>
         <spring-boot.version>2.3.4.RELEASE</spring-boot.version>
         <spring-cloud.version>Hoxton.SR6</spring-cloud.version>
-        <specification.version>1.0.0</specification.version>
-        <skip.boot.features>false</skip.boot.features>
-        <jddd.version>0.1.0</jddd.version>
         <openapi-generator-maven-plugin.version>5.0.0-beta2</openapi-generator-maven-plugin.version>
         <jackson-databind-nullable.version>0.2.1</jackson-databind-nullable.version>
         <problem-spring-web.version>0.25.2</problem-spring-web.version>
@@ -36,16 +33,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.jddd</groupId>
-            <artifactId>jddd-core</artifactId>
-            <version>${jddd.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jddd</groupId>
-            <artifactId>jddd-events</artifactId>
-            <version>${jddd.version}</version>
-        </dependency>
         <dependency>
             <groupId>com.tngtech.archunit</groupId>
             <artifactId>archunit-junit5</artifactId>

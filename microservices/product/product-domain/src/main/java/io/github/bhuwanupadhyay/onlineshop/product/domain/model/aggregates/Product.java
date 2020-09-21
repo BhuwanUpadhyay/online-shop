@@ -1,5 +1,6 @@
 package io.github.bhuwanupadhyay.onlineshop.product.domain.model.aggregates;
 
+import io.github.bhuwanupadhyay.ddd.AggregateRoot;
 import io.github.bhuwanupadhyay.onlineshop.product.domain.commands.ProductCreateCommand;
 import io.github.bhuwanupadhyay.onlineshop.product.domain.commands.ProductUpdateCommand;
 import io.github.bhuwanupadhyay.onlineshop.product.domain.model.entities.Category;
@@ -7,23 +8,21 @@ import io.github.bhuwanupadhyay.onlineshop.product.domain.model.events.ProductCr
 import io.github.bhuwanupadhyay.onlineshop.product.domain.model.events.ProductUpdated;
 import io.github.bhuwanupadhyay.onlineshop.product.domain.model.repositories.Categories;
 import io.github.bhuwanupadhyay.onlineshop.product.domain.model.valueobjects.ProductId;
-import org.jddd.core.types.AggregateRoot;
-import org.jddd.event.types.DomainEvent;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
-public class Product implements AggregateRoot<Product, ProductId> {
-    private final ProductId id;
+public class Product extends AggregateRoot<ProductId> {
     private final Set<Category> categories = new LinkedHashSet<>();
-    private final List<DomainEvent> domainEvents = new LinkedList<>();
     private String name;
     private String description;
 
     public Product(ProductId id, ProductCreateCommand command) {
-        this.id = id;
+        super(id);
         this.name = command.name();
         this.description = command.description();
-        this.domainEvents.add(new ProductCreated());
+        this.registerEvent(new ProductCreated());
     }
 
     public void on(ProductUpdateCommand command, Categories categories) {
@@ -31,22 +30,13 @@ public class Product implements AggregateRoot<Product, ProductId> {
         this.description = command.description();
         command.categoryIds()
                 .stream()
-                .map(categories::findOne)
+                .map(categories::find)
                 .forEachOrdered(this.categories::add);
-        this.domainEvents.add(new ProductUpdated());
+        this.registerEvent(new ProductUpdated());
     }
 
     public Set<Category> getCategories() {
         return Collections.unmodifiableSet(this.categories);
-    }
-
-    public List<DomainEvent> getDomainEvents() {
-        return Collections.unmodifiableList(this.domainEvents);
-    }
-
-    @Override
-    public ProductId getId() {
-        return id;
     }
 
     public String getDescription() {
@@ -55,18 +45,5 @@ public class Product implements AggregateRoot<Product, ProductId> {
 
     public String getName() {
         return name;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return Objects.equals(id, product.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
     }
 }

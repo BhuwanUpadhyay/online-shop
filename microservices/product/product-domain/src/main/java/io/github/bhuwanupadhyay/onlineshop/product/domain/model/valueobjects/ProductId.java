@@ -1,8 +1,8 @@
 package io.github.bhuwanupadhyay.onlineshop.product.domain.model.valueobjects;
 
-import org.jddd.core.types.Identifier;
+import io.github.bhuwanupadhyay.ddd.ValueObject;
 
 import java.util.UUID;
 
-public record ProductId(UUID id) implements Identifier {
+public record ProductId(UUID id) implements ValueObject {
 }

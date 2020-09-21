@@ -20,9 +20,8 @@ public class UpdateProductCommandService implements CommandService<ProductUpdate
 
     @Override
     public Result<ProductId> execute(ProductId id, ProductUpdateCommand command) {
-        Product product = products.findOne(id);
+        Product product = products.find(id);
         product.on(command, categories);
-        Product saved = products.save(product);
-        return new Result<>(saved.getId());
+        return new Result<>(products.save(product));
     }
 }

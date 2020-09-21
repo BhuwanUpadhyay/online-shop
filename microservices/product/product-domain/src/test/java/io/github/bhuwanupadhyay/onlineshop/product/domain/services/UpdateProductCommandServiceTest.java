@@ -42,13 +42,13 @@ class UpdateProductCommandServiceTest {
         ProductUpdateCommand command = new ProductUpdateCommand("name", "desc", Set.of());
 
         Product savedProduct = new Product(productId, new ProductCreateCommand(command.name(), command.description()));
-        when(products.findOne(eq(productId))).thenReturn(savedProduct);
+        when(products.find(eq(productId))).thenReturn(savedProduct);
         savedProduct.on(command, categories);
-        when(products.save(eq(savedProduct))).thenReturn(savedProduct);
+        when(products.save(eq(savedProduct))).thenReturn(productId);
 
         Result<ProductId> result = commandService.execute(productId, command);
 
-        verify(products).findOne(eq(productId));
+        verify(products).find(eq(productId));
         verify(products).save(eq(savedProduct));
 
         assertTrue(result.isOk());
