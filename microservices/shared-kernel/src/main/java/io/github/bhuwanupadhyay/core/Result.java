@@ -1,6 +1,5 @@
 package io.github.bhuwanupadhyay.core;
 
-import io.github.bhuwanupadhyay.rules.Problem;
 
 import java.util.ArrayList;
 import java.util.List;

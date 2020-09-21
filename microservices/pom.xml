@@ -12,7 +12,7 @@
     <artifactId>microservices</artifactId>
     <packaging>pom</packaging>
     <modules>
-<!--        <module>shared-kernel</module>-->
+        <module>shared-kernel</module>
         <module>product</module>
 <!--        <module>order</module>-->
 <!--        <module>inventory</module>-->
@@ -45,11 +45,6 @@
             <groupId>org.jddd</groupId>
             <artifactId>jddd-events</artifactId>
             <version>${jddd.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>com.tngtech.archunit</groupId>
