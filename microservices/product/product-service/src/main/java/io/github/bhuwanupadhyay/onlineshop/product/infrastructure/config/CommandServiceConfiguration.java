@@ -15,7 +15,6 @@ public class CommandServiceConfiguration {
         return new UpdateProductCommandService(products, categories);
     }
 
-
     @Bean
     public CreateProductCommandService createProductCommandService(Products products) {
         return new CreateProductCommandService(products);
